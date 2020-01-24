@@ -21,6 +21,8 @@ extern "C" {
 #include "led.h"
 #include "uart.h"
 #include "cmdif.h"
+#include "qspi.h"
+#include "flash.h"
 
 
 

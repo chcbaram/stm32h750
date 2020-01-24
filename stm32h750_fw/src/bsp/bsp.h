@@ -18,6 +18,8 @@ extern "C" {
 #include "stm32h7xx_hal.h"
 
 
+#define logPrintf(...)    printf(__VA_ARGS__)
+
 
 void bspInit(void);
 
