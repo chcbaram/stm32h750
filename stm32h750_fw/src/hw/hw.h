@@ -23,8 +23,11 @@ extern "C" {
 #include "cmdif.h"
 #include "qspi.h"
 #include "flash.h"
+#include "usb.h"
+#include "gpio.h"
 
-
+#include "sd.h"
+#include "fatfs/fatfs.h"
 
 void hwInit(void);
 

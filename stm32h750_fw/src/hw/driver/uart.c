@@ -10,7 +10,7 @@
 
 #include "uart.h"
 #include "qbuffer.h"
-
+#include "vcp.h"
 
 
 
@@ -75,7 +75,7 @@ bool uartInit(void)
     uart_tbl[i].is_open  = false;
     uart_tbl[i].rx_mode  = UART_MODE_POLLING;
     uart_tbl[i].tx_mode  = UART_MODE_POLLING;
-     uart_tbl[i].hw_driver = UART_HW_NONE;
+    uart_tbl[i].hw_driver = UART_HW_NONE;
   }
 
   return true;
@@ -126,6 +126,19 @@ bool uartOpen(uint8_t channel, uint32_t baud)
 
       p_uart->is_open  = true;
 
+      uartStartRx(channel);
+      ret = true;
+      break;
+
+    case _DEF_UART2:
+      p_uart = &uart_tbl[channel];
+
+      p_uart->baud     = baud;
+      p_uart->is_open  = true;
+
+      p_uart->rx_mode  = UART_MODE_VCP;
+      p_uart->tx_mode  = UART_MODE_VCP;
+      p_uart->hw_driver = UART_HW_STM32_VCP;
       uartStartRx(channel);
       ret = true;
       break;
