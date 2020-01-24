@@ -30,4 +30,11 @@
 
 
 
+
+
+
+#define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
+
+
+
 #endif /* SRC_COMMON_DEF_H_ */
