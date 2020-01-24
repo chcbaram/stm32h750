@@ -20,6 +20,7 @@ extern "C" {
 #include "millis.h"
 #include "led.h"
 #include "uart.h"
+#include "cmdif.h"
 
 
 
