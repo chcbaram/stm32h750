@@ -137,6 +137,9 @@
   * @param  None
   * @retval None
   */
+
+extern uint32_t _flash_tag_addr;
+
 void SystemInit (void)
 {
 #if defined (DATA_IN_D2_SRAM)
@@ -227,7 +230,8 @@ void SystemInit (void)
 #ifdef VECT_TAB_SRAM
   SCB->VTOR = D1_AXISRAM_BASE  | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal D1 AXI-RAM */
 #else
-  SCB->VTOR = FLASH_BANK1_BASE | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal FLASH */
+  SCB->VTOR = ((uint32_t)&_flash_tag_addr) | VECT_TAB_OFFSET;
+  //SCB->VTOR = FLASH_BANK1_BASE | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal FLASH */
 #endif
 
 #endif /*DUAL_CORE && CORE_CM4*/

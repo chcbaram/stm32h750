@@ -52,4 +52,33 @@
 
 
 
+typedef struct
+{
+  uint32_t magic_number;
+
+  //-- fw info
+  //
+  uint8_t  version_str[32];
+  uint8_t  board_str  [32];
+  uint8_t  name_str   [32];
+  uint8_t  date_str   [32];
+  uint8_t  time_str   [32];
+  uint32_t addr_tag;
+  uint32_t addr_fw;
+  uint32_t reserved   [32];
+
+  //-- tag info
+  //
+  uint32_t tag_flash_type;
+  uint32_t tag_flash_start;
+  uint32_t tag_flash_end;
+  uint32_t tag_flash_length;
+  uint32_t tag_flash_crc;
+  uint32_t tag_length;
+  uint8_t  tag_date_str[32];
+  uint8_t  tag_time_str[32];
+} flash_tag_t;
+
+
+
 #endif /* SRC_COMMON_DEF_H_ */
