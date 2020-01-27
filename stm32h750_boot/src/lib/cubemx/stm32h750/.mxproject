@@ -1,7 +1,7 @@
 [PreviousGenFiles]
-HeaderPath=D:/git/stm32h750/stm32h750_fw/src/lib/cubemx/stm32h750/Inc
+HeaderPath=D:/git/stm32h750/stm32h750_boot/src/lib/cubemx/stm32h750/Inc
 HeaderFiles=gpio.h;rtc.h;sys.h;stm32h7xx_it.h;stm32h7xx_hal_conf.h;main.h;dma.h;usart.h;quadspi.h;usb_device.h;usbd_conf.h;usbd_desc.h;usbd_cdc_if.h;usb_otg.h;sdmmc.h;
-SourcePath=D:/git/stm32h750/stm32h750_fw/src/lib/cubemx/stm32h750/Src
+SourcePath=D:/git/stm32h750/stm32h750_boot/src/lib/cubemx/stm32h750/Src
 SourceFiles=gpio.c;rtc.c;sys.c;stm32h7xx_it.c;stm32h7xx_hal_msp.c;main.c;dma.c;usart.c;quadspi.c;usb_device.c;usbd_conf.c;usbd_desc.c;usbd_cdc_if.c;usb_otg.c;sdmmc.c;
 
 [PreviousLibFiles]

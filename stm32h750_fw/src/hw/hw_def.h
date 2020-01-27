@@ -49,5 +49,10 @@
 #define _PIN_GPIO_SDCARD_DETECT     0
 
 
+#define _HW_DEF_RTC_BOOT_RESET      RTC_BKP_DR3
+#define _HW_DEF_RTC_BOOT_MODE       RTC_BKP_DR4
+#define _HW_DEF_RTC_RESET_SRC       RTC_BKP_DR5
+
+
 
 #endif /* SRC_HW_HW_DEF_H_ */

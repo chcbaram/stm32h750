@@ -148,7 +148,7 @@ void Error_Handler(void)
 }
 
 
-#if 1
+#if 0
 static TIM_HandleTypeDef        TimHandle;
 
 

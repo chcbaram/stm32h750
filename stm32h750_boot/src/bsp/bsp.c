@@ -13,6 +13,8 @@
 
 
 void SystemClock_Config(void);
+extern void usbDeInit(void);
+
 
 
 
@@ -105,6 +107,7 @@ void bspInit(void)
 
 void bspDeInit(void)
 {
+  usbDeInit();
   HAL_RCC_DeInit();
 
 

@@ -31,6 +31,7 @@ typedef struct {
 
 bool qspiInit(void);
 bool qspiIsInit(void);
+bool qspiReset(void);
 
 bool qspiRead(uint32_t addr, uint8_t *p_data, uint32_t length);
 bool qspiWrite(uint32_t addr, uint8_t *p_data, uint32_t length);

@@ -9,10 +9,18 @@
 
 
 #include "ap.h"
+#include "boot/boot.h"
 
 
 
-void testCmdif(void);
+#define BOOT_MODE_JUMP_FW     0
+#define BOOT_MODE_LOADER      1
+#define BOOT_MODE_ROMBOOT     2
+
+
+uint8_t boot_mode = BOOT_MODE_LOADER;
+
+static cmd_t cmd_boot;
 
 
 
@@ -23,7 +31,50 @@ void apInit(void)
 
   cmdifOpen(_DEF_UART1, 57600);
 
-  cmdifAdd("test", testCmdif);
+  cmdInit(&cmd_boot);
+  cmdBegin(&cmd_boot, _DEF_UART2, 57600);
+
+
+  boot_mode = resetGetCount();
+
+
+  switch(boot_mode)
+  {
+    case BOOT_MODE_LOADER:
+      logPrintf("boot begin...\r\n");
+      break;
+
+    case BOOT_MODE_ROMBOOT:
+      logPrintf("jump system boot...\r\n");
+      delay(100);
+      resetToSysBoot();
+      break;
+
+    default:
+      logPrintf("jump fw...\r\n");
+
+      qspiEnableMemoryMappedMode();
+
+      if (bootVerifyCrc() != true)
+      {
+        logPrintf("fw crc    \t\t: Fail\r\n");
+        logPrintf("boot begin...\r\n");
+
+        qspiReset();
+        boot_mode = BOOT_MODE_LOADER;
+      }
+      else
+      {
+        delay(100);
+        bootJumpToFw();
+      }
+
+      break;
+  }
+
+  usbInit();
+  usbBegin(USB_CDC_MODE);
+  vcpInit();
 }
 
 void apMain(void)
@@ -34,7 +85,12 @@ void apMain(void)
   {
     cmdifMain();
 
-    if (millis()-pre_time >= 500)
+    if (cmdReceivePacket(&cmd_boot) == true)
+    {
+      bootProcessCmd(&cmd_boot);
+    }
+
+    if (millis()-pre_time >= 100)
     {
       pre_time = millis();
       ledToggle(_DEF_LED1);
@@ -46,22 +102,3 @@ void apMain(void)
 
 
 
-void testCmdif(void)
-{
-  bool ret = true;
-
-
-  if (cmdifGetParamCnt() == 1 && cmdifHasString("info", 0) == true)
-  {
-    cmdifPrintf("cmdif test\n");
-  }
-  else
-  {
-    ret = false;
-  }
-
-  if (ret == false)
-  {
-    cmdifPrintf( "test info \n");
-  }
-}

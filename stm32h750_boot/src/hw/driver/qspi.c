@@ -54,6 +54,7 @@ uint8_t BSP_QSPI_GetInfo    (QSPI_Info* pInfo);
 uint8_t BSP_QSPI_EnableMemoryMappedMode(void);
 uint8_t BSP_QSPI_GetID(QSPI_Info* pInfo);
 uint8_t BSP_QSPI_Config(void);
+uint8_t BSP_QSPI_Reset(void);
 
 
 
@@ -103,6 +104,23 @@ bool qspiInit(void)
 bool qspiIsInit(void)
 {
   return is_init;
+}
+
+bool qspiReset(void)
+{
+  bool ret = false;
+
+
+
+  if (is_init == true)
+  {
+    if (BSP_QSPI_Reset() == QSPI_OK)
+    {
+      ret = true;
+    }
+  }
+
+  return ret;
 }
 
 bool qspiRead(uint32_t addr, uint8_t *p_data, uint32_t length)
@@ -291,6 +309,8 @@ static uint8_t QSPI_ReadStatus(QSPI_HandleTypeDef *hqspi, uint8_t cmd, uint8_t *
 static uint8_t QSPI_WriteStatus(QSPI_HandleTypeDef *hqspi, uint8_t cmd, uint8_t data);
 
 
+static bool init_msg = true;
+
 /**
   * @brief  Initializes the QSPI interface.
   * @retval QSPI memory status
@@ -319,24 +339,44 @@ uint8_t BSP_QSPI_Init(void)
 
   if (HAL_QSPI_Init(&hqspi) != HAL_OK)
   {
-    printf("HAL_QSPI_Init() fail\n");
+    if (init_msg == true)
+    {
+      printf("HAL_QSPI_Init() fail\n");
+    }
     return QSPI_ERROR;
   }
 
   /* QSPI memory reset */
   if (QSPI_ResetMemory(&hqspi) != QSPI_OK)
   {
-    printf("QSPI_ResetMemory() fail\n");
+    if (init_msg == true)
+    {
+      printf("QSPI_ResetMemory() fail\n");
+    }
     return QSPI_NOT_SUPPORTED;
   }
 
   if (BSP_QSPI_Config() != QSPI_OK)
   {
-    printf("QSPI_Config() fail\n");
+    if (init_msg == true)
+    {
+      printf("QSPI_Config() fail\n");
+    }
     return QSPI_NOT_SUPPORTED;
   }
 
   return QSPI_OK;
+}
+
+uint8_t BSP_QSPI_Reset(void)
+{
+  uint8_t ret;
+
+  init_msg = false;
+  ret = BSP_QSPI_Init();
+  init_msg = true;
+
+  return ret;
 }
 
 uint8_t BSP_QSPI_Config(void)

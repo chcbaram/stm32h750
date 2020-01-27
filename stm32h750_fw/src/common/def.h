@@ -17,6 +17,8 @@
 #include <stdarg.h>
 
 
+
+
 #define _DEF_LED1                   0
 #define _DEF_LED2                   1
 #define _DEF_LED3                   2
@@ -51,7 +53,6 @@
 #define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
 
 
-
 typedef struct
 {
   uint32_t magic_number;
@@ -78,6 +79,9 @@ typedef struct
   uint8_t  tag_date_str[32];
   uint8_t  tag_time_str[32];
 } flash_tag_t;
+
+
+#define FLASH_MAGIC_NUMBER      0x5555AAAA
 
 
 

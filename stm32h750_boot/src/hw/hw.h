@@ -16,6 +16,7 @@ extern "C" {
 
 #include "hw_def.h"
 
+#include "util.h"
 #include "delay.h"
 #include "millis.h"
 #include "led.h"
@@ -25,6 +26,9 @@ extern "C" {
 #include "flash.h"
 #include "usb.h"
 #include "gpio.h"
+#include "reset.h"
+#include "rtc.h"
+#include "cmd.h"
 
 #include "sd.h"
 #include "fatfs/fatfs.h"

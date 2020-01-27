@@ -54,7 +54,7 @@ uint8_t BSP_QSPI_GetInfo    (QSPI_Info* pInfo);
 uint8_t BSP_QSPI_EnableMemoryMappedMode(void);
 uint8_t BSP_QSPI_GetID(QSPI_Info* pInfo);
 uint8_t BSP_QSPI_Config(void);
-
+uint8_t BSP_QSPI_Reset(void);
 
 
 
@@ -96,6 +96,23 @@ bool qspiInit(void)
 
 
   is_init = ret;
+
+  return ret;
+}
+
+bool qspiReset(void)
+{
+  bool ret = false;
+
+
+
+  if (is_init == true)
+  {
+    if (BSP_QSPI_Reset() == QSPI_OK)
+    {
+      ret = true;
+    }
+  }
 
   return ret;
 }
@@ -333,6 +350,16 @@ uint8_t BSP_QSPI_Init(void)
   if (BSP_QSPI_Config() != QSPI_OK)
   {
     printf("QSPI_Config() fail\n");
+    return QSPI_NOT_SUPPORTED;
+  }
+
+  return QSPI_OK;
+}
+
+uint8_t BSP_QSPI_Reset(void)
+{
+  if (QSPI_ResetMemory(&hqspi) != QSPI_OK)
+  {
     return QSPI_NOT_SUPPORTED;
   }
 
