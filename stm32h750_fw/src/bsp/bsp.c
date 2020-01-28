@@ -121,25 +121,6 @@ void SystemClock_Config(void)
   /** Enable USB Voltage detector
   */
   HAL_PWREx_EnableUSBVoltageDetector();
-
-
-  /*
-    Note : The activation of the I/O Compensation Cell is recommended with communication  interfaces
-            (GPIO, SPI, FMC, QSPI ...)  when  operating at  high frequencies(please refer to product datasheet)
-            The I/O Compensation Cell activation  procedure requires :
-          - The activation of the CSI clock
-          - The activation of the SYSCFG clock
-          - Enabling the I/O Compensation Cell : setting bit[0] of register SYSCFG_CCCSR
-            To do this please uncomment the following code
-  */
-
-  //*
-  __HAL_RCC_CSI_ENABLE() ;
-
-  __HAL_RCC_SYSCFG_CLK_ENABLE() ;
-
-  HAL_EnableCompensationCell();
-  //*/
 }
 
 

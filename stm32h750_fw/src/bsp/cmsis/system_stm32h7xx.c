@@ -48,7 +48,7 @@
 #include "stm32h7xx.h"
 #include <math.h>
 #if !defined  (HSE_VALUE)
-#define HSE_VALUE    ((uint32_t)25000000) /*!< Value of the External oscillator in Hz */
+#define HSE_VALUE    ((uint32_t)8000000) /*!< Value of the External oscillator in Hz */
 #endif /* HSE_VALUE */
 
 #if !defined  (CSI_VALUE)
@@ -138,7 +138,7 @@
   * @retval None
   */
 
-extern uint32_t _flash_tag_addr;
+extern uint32_t _flash_fw_addr;
 
 void SystemInit (void)
 {
@@ -230,7 +230,7 @@ void SystemInit (void)
 #ifdef VECT_TAB_SRAM
   SCB->VTOR = D1_AXISRAM_BASE  | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal D1 AXI-RAM */
 #else
-  SCB->VTOR = ((uint32_t)&_flash_tag_addr) | VECT_TAB_OFFSET;
+  SCB->VTOR = ((uint32_t)&_flash_fw_addr) | VECT_TAB_OFFSET;
   //SCB->VTOR = FLASH_BANK1_BASE | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal FLASH */
 #endif
 

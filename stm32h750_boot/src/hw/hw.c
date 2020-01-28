@@ -14,7 +14,7 @@
 
 
 __attribute__((section(".version"))) uint8_t boot_name[32] = "STM32H750_B/D";
-__attribute__((section(".version"))) uint8_t boot_ver[32]  = "B200126R1";
+__attribute__((section(".version"))) uint8_t boot_ver[32]  = "B200128R1";
 
 
 

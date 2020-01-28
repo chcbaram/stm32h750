@@ -23,7 +23,7 @@ __attribute__((section(".tag"))) flash_tag_t fw_tag =
      // fw info
      //
      0xAAAA5555,        // magic_number
-     "V191123R1",       // version_str
+     "V200128R1",       // version_str
      "STM32H750_B/D",   // board_str
      "Firmware",        // name
      __DATE__,
