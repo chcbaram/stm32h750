@@ -16,6 +16,7 @@ extern "C" {
 
 #include "def.h"
 #include "stm32h7xx_hal.h"
+#include "cmsis_os.h"
 
 
 #define logPrintf(...)    printf(__VA_ARGS__)

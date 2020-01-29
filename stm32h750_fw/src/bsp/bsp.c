@@ -10,6 +10,7 @@
 
 #include "bsp.h"
 #include "uart.h"
+#include "rtos.h"
 
 
 void SystemClock_Config(void);
@@ -33,6 +34,10 @@ void bspInit(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
+
+
+
+  rtosInit();
 }
 
 

@@ -19,7 +19,18 @@ bool delayInit(void)
 
 void delay(uint32_t ms)
 {
+#ifdef _USE_HW_RTOS
+  if (xTaskGetSchedulerState() != taskSCHEDULER_NOT_STARTED)
+  {
+    osDelay(ms);
+  }
+  else
+  {
+    HAL_Delay(ms);
+  }
+#else
   HAL_Delay(ms);
+#endif
 }
 
 void delayNs(uint32_t ns)
