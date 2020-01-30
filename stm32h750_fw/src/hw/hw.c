@@ -26,6 +26,8 @@ void hwInit(void)
   cmdifInit();
   ledInit();
   gpioInit();
+  pwmInit();
+  spiInit();
   uartInit();
   uartOpen(_DEF_UART1, 57600);
   uartOpen(_DEF_UART2, 57600);
@@ -51,10 +53,14 @@ void hwInit(void)
     fatfsInit();
 
 #if HW_USE_MSC == 1
-    usbInit();
-    usbBegin(USB_MSC_MODE);
+    //usbInit();
+    //usbBegin(USB_MSC_MODE);
 #endif
   }
 
   logPrintf("Start...\r\n");
+
+
+  pwmWrite(0, 255);
+  ili9225Init();
 }

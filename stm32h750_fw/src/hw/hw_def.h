@@ -45,6 +45,13 @@
 #define _USE_HW_GPIO
 #define      HW_GPIO_MAX_CH         1
 
+#define _USE_HW_PWM
+#define      HW_PWM_MAX_CH          1
+
+#define _USE_HW_SPI
+#define      HW_SPI_MAX_CH          1
+
+#define _USE_HW_ILI9225
 
 
 #define _USE_HW_CMDIF

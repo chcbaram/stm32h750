@@ -47,6 +47,11 @@
 #define _DEF_OUTPUT_PULLDOWN        5
 
 
+#define _DEF_SPI1                   0
+#define _DEF_SPI2                   1
+#define _DEF_SPI3                   2
+#define _DEF_SPI4                   3
+
 
 
 

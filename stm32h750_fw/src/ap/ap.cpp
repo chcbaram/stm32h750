@@ -56,6 +56,9 @@ void apInit(void)
 void apMain(void)
 {
   uint32_t pre_time;
+  uint8_t tx_buf[256];
+
+  memset(tx_buf, 0, 256);
 
   while(1)
   {
@@ -76,11 +79,18 @@ void apMain(void)
 void testCmdif(void)
 {
   bool ret = true;
+  uint8_t tx_buf[256];
 
 
   if (cmdifGetParamCnt() == 1 && cmdifHasString("info", 0) == true)
   {
     cmdifPrintf("cmdif test\n");
+  }
+  else if (cmdifGetParamCnt() == 1 && cmdifHasString("spi", 0) == true)
+  {
+    cmdifPrintf("cmdif spi\n");
+
+    spiDmaTransfer(_DEF_SPI1, tx_buf, 256, 100);
   }
   else
   {

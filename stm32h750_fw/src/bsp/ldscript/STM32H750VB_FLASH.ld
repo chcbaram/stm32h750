@@ -165,7 +165,28 @@ SECTIONS
 
   
   
+  .sram_d1 :
+  {
+    . = ALIGN(4);
+    _ssram_d1 = .;       /* create a global symbol at sram_d1 start */
+    *(.sram_d1)
+    *(.sram_d1*)
+    
+    . = ALIGN(4);
+    _esram_d1 = .;       /* create a global symbol at sram_d1 end */
+  } >RAM_D1 AT> FLASH  
 
+  .sram_d2 :
+  {
+    . = ALIGN(4);
+    _ssram_d2 = .;       /* create a global symbol at sram_d2 start */
+    *(.sram_d2)
+    *(.sram_d2*)
+    
+    . = ALIGN(4);
+    _esram_d2 = .;       /* create a global symbol at sram_d2 end */
+  } >RAM_D2 AT> FLASH  
+  
   .sram_d3 :
   {
     . = ALIGN(4);

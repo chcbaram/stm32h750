@@ -53,7 +53,7 @@ void bspInit(void)
   /* Disable the MPU */
   HAL_MPU_Disable();
 
-#if 0
+#if 1
   /* Setup D1 SRAM in Write-through */
   MPU_InitStruct.Enable           = MPU_REGION_ENABLE;
   MPU_InitStruct.BaseAddress      = D1_AXISRAM_BASE;
@@ -78,11 +78,12 @@ void bspInit(void)
   MPU_InitStruct.IsBufferable     = MPU_ACCESS_NOT_BUFFERABLE;
   MPU_InitStruct.IsCacheable      = MPU_ACCESS_NOT_CACHEABLE;
   MPU_InitStruct.IsShareable      = MPU_ACCESS_NOT_SHAREABLE;
-  MPU_InitStruct.Number           = MPU_REGION_NUMBER0;
+  MPU_InitStruct.Number           = MPU_REGION_NUMBER1;
   MPU_InitStruct.TypeExtField     = MPU_TEX_LEVEL1;
   MPU_InitStruct.SubRegionDisable = 0x00;
   MPU_InitStruct.DisableExec      = MPU_INSTRUCTION_ACCESS_ENABLE;
   HAL_MPU_ConfigRegion(&MPU_InitStruct);
+
 
 #if 0
   /* Write-back, write and read allocate */
@@ -93,7 +94,7 @@ void bspInit(void)
   MPU_InitStruct.IsBufferable     = MPU_ACCESS_BUFFERABLE;
   MPU_InitStruct.IsCacheable      = MPU_ACCESS_CACHEABLE;
   MPU_InitStruct.IsShareable      = MPU_ACCESS_NOT_SHAREABLE;
-  MPU_InitStruct.Number           = MPU_REGION_NUMBER1;
+  MPU_InitStruct.Number           = MPU_REGION_NUMBER2;
   MPU_InitStruct.TypeExtField     = MPU_TEX_LEVEL1;
   MPU_InitStruct.SubRegionDisable = 0x00;
   MPU_InitStruct.DisableExec      = MPU_INSTRUCTION_ACCESS_ENABLE;

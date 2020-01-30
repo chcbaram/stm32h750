@@ -61,6 +61,12 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define SDCARD_CD_Pin GPIO_PIN_13
 #define SDCARD_CD_GPIO_Port GPIOC
+#define SPI1_CS_Pin GPIO_PIN_0
+#define SPI1_CS_GPIO_Port GPIOC
+#define SPI1_RS_Pin GPIO_PIN_1
+#define SPI1_RS_GPIO_Port GPIOC
+#define LCD_RESET_Pin GPIO_PIN_2
+#define LCD_RESET_GPIO_Port GPIOC
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

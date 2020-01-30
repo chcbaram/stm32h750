@@ -25,6 +25,9 @@ extern "C" {
 #include "flash.h"
 #include "usb.h"
 #include "gpio.h"
+#include "pwm.h"
+#include "spi.h"
+#include "ili9225.h"
 
 #include "sd.h"
 #include "fatfs/fatfs.h"
