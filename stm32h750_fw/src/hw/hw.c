@@ -23,6 +23,7 @@ void hwInit(void)
   delayInit();
   millis();
 
+  resetInit();
   cmdifInit();
   ledInit();
   gpioInit();
@@ -38,6 +39,7 @@ void hwInit(void)
   logPrintf("Booting..Name \t\t: %s\r\n", fw_tag.name_str);
   logPrintf("Booting..Ver  \t\t: %s\r\n", fw_tag.version_str);
 
+  rtcInit();
 
   //qspiInit();
   //flashInit();
@@ -61,6 +63,12 @@ void hwInit(void)
   logPrintf("Start...\r\n");
 
 
-  pwmWrite(0, 255);
   ili9225Init();
+  lcdInit();
+}
+
+void hwJumpToBoot(void)
+{
+  rtcWriteBackupData(_HW_DEF_RTC_BOOT_MODE, (1<<7));
+  resetRunSoftReset();
 }

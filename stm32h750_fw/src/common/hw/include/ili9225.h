@@ -24,17 +24,20 @@
 #include "ili9225_regs.h"
 
 
-#define _PIN_DEF_DC     0
-#define _PIN_DEF_CS     1
-#define _PIN_DEF_RST    2
+
+#define ILI9225_LCD_WIDTH      220
+#define ILI9225_LCD_HEIGHT     176
 
 
 
-bool ili9225Init();
 
-void ili9225SetRotation(uint8_t mode);
-void ili9225SetAddrWindow(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1);
+bool ili9225Init(void);
+bool ili9225DrawAvailable(void);
+bool ili9225RequestDraw(void);
+void ili9225SetFrameBuffer(uint16_t *p_buf);
 
+uint32_t ili9225GetFps(void);
+uint32_t ili9225GetFpsTime(void);
 
 uint16_t ili9225GetWidth(void);
 uint16_t ili9225GetHeight(void);

@@ -31,6 +31,16 @@
 #define _USE_HW_FATFS
 
 
+#define _USE_HW_RTC
+#define      HW_RTC_CFG_DATA_1      RTC_BKP_DR1
+#define      HW_RTC_CFG_DATA_2      RTC_BKP_DR2
+
+#define _USE_HW_RESET
+#define      HW_RESET_BOOT_CNT      RTC_BKP_DR3
+#define      HW_RESET_BOOT_MODE     RTC_BKP_DR4
+#define      HW_RESET_BOOT_SRC      RTC_BKP_DR5
+
+
 #define _USE_HW_LED
 #define      HW_LED_MAX_CH          1
 
@@ -39,8 +49,8 @@
 
 #define _USE_HW_VCP
 #define _USE_HW_USB
-#define      HW_USE_CDC             0
-#define      HW_USE_MSC             1
+#define      HW_USE_CDC             1
+#define      HW_USE_MSC             0
 
 #define _USE_HW_GPIO
 #define      HW_GPIO_MAX_CH         1
@@ -53,6 +63,9 @@
 
 #define _USE_HW_ILI9225
 
+#define _USE_HW_LCD
+#define      HW_LCD_WIDTH           220
+#define      HW_LCD_HEIGHT          176
 
 #define _USE_HW_CMDIF
 #define      HW_CMDIF_LIST_MAX              32

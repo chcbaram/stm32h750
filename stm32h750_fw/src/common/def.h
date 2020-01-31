@@ -53,10 +53,18 @@
 #define _DEF_SPI4                   3
 
 
+#define _DEF_RESET_POWER            0
+#define _DEF_RESET_PIN              1
+#define _DEF_RESET_WDG              2
+#define _DEF_RESET_SOFT             3
+
 
 
 #define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
 
+#ifndef map
+#define map(value, in_min, in_max, out_min, out_max) ((value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
+#endif
 
 typedef struct
 {

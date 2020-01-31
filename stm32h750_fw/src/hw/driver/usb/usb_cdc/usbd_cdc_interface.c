@@ -49,7 +49,7 @@
 #include "bsp.h"
 #include "usb.h"
 //#include "wdg.h"
-//#include "reset.h"
+#include "reset.h"
 
 
 const char *JUMP_BOOT_STR = "BOOT 5555AAAA";
@@ -109,7 +109,6 @@ static uint8_t CDC_Itf_TxRead( void );
 
 void CDC_Itf_TxISR(void *arg);
 
-extern void hwJumpToBoot(void);
 
 
 
@@ -335,7 +334,7 @@ static int8_t CDC_Itf_Receive(uint8_t* Buf, uint32_t *Len)
 
       if( i == 13 )
       {
-        //hwJumpToBoot();
+        resetToBoot();
       }
     }
   }

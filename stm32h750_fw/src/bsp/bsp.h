@@ -23,6 +23,7 @@ extern "C" {
 
 
 void bspInit(void);
+void bspDeInit(void);
 
 extern void delay(uint32_t delay_ms);
 extern uint32_t millis(void);

@@ -15,6 +15,7 @@
 
 void SystemClock_Config(void);
 void startup(void);
+extern void usbDeInit(void);
 
 
 void bspInit(void)
@@ -38,6 +39,21 @@ void bspInit(void)
 
 
   rtosInit();
+}
+
+void bspDeInit(void)
+{
+  usbDeInit();
+  HAL_RCC_DeInit();
+
+  // Disable Interrupts
+  //
+  for (int i=0; i<8; i++)
+  {
+    NVIC->ICER[i] = 0xFFFFFFFF;
+    __DSB();
+    __ISB();
+  }
 }
 
 

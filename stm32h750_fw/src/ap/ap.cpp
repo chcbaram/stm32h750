@@ -56,9 +56,8 @@ void apInit(void)
 void apMain(void)
 {
   uint32_t pre_time;
-  uint8_t tx_buf[256];
-
-  memset(tx_buf, 0, 256);
+  uint16_t x = 0;
+  uint16_t y = 0;
 
   while(1)
   {
@@ -68,6 +67,25 @@ void apMain(void)
     {
       pre_time = millis();
       ledToggle(_DEF_LED1);
+    }
+
+
+    if (lcdDrawAvailable() > 0)
+    {
+      lcdClearBuffer(black);
+      lcdPrintf(0,  0, white, "%d ms", ili9225GetFpsTime());
+      lcdPrintf(0, 16, white, "%d fps", ili9225GetFps());
+
+      lcdDrawFillRect(x, 32, 30, 30, red);
+      lcdDrawFillRect(lcdGetWidth()-x, 62, 30, 30, green);
+      lcdDrawFillRect(x + 30, 92, 30, 30, blue);
+
+      x += 2;
+
+      x %= lcdGetWidth();
+      y %= lcdGetHeight();
+
+      lcdRequestDraw();
     }
   }
 }

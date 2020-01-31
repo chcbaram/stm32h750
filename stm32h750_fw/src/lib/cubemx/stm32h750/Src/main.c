@@ -23,6 +23,7 @@
 #include "adc.h"
 #include "dcmi.h"
 #include "dma.h"
+#include "dma2d.h"
 #include "quadspi.h"
 #include "rtc.h"
 #include "sdmmc.h"
@@ -110,6 +111,7 @@ int main(void)
   MX_TIM7_Init();
   MX_ADC1_Init();
   MX_TIM17_Init();
+  MX_DMA2D_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */

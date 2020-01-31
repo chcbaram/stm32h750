@@ -35,8 +35,7 @@ enum class_color {
 
 
 
-#define _LCD_WIDTH      220
-#define _LCD_HEIGHT     176
+
 
 #define _PIN_DEF_DC     0
 #define _PIN_DEF_CS     1
@@ -60,10 +59,16 @@ static ili9225_pin_t pin_tbl[3] =
 
 
 
-static uint16_t _width  = _LCD_WIDTH;
-static uint16_t _height = _LCD_HEIGHT;
+static uint16_t _width  = ILI9225_LCD_WIDTH;
+static uint16_t _height = ILI9225_LCD_HEIGHT;
 static uint8_t   spi_ch = _DEF_SPI1;
-static bool      swap_color = false;
+static uint32_t fps_pre_time;
+static uint32_t fps_time;
+static uint32_t fps_count = 0;
+static bool     is_tx_done = true;
+
+static uint16_t *p_frame_buf = NULL;
+
 
 static void ili9225InitRegs(void);
 
@@ -72,8 +77,26 @@ static void _writeCommand16(uint16_t cmd);
 static void _writeData16(uint16_t data);
 static void _writeRegister(uint16_t cmd, uint16_t data);
 
+//static void ili9225SetRotation(uint8_t mode);
+static void ili9225SetAddrWindow(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1);
 
-static __attribute__((section(".sram_d1"))) uint16_t lcd_buf[_LCD_WIDTH * _LCD_HEIGHT];
+
+
+
+
+void TransferDoneISR(void)
+{
+  fps_time = millis() - fps_pre_time;
+  if (fps_time > 0)
+  {
+    fps_count = 1000 / fps_time;
+  }
+  _writePin(_PIN_DEF_CS, _DEF_HIGH);
+
+  is_tx_done = true;
+}
+
+
 
 bool ili9225Init()
 {
@@ -99,47 +122,30 @@ bool ili9225Init()
 
 
   _writePin(_PIN_DEF_RST, _DEF_HIGH);
-  delay(50);
+  delay(10);
   _writePin(_PIN_DEF_RST, _DEF_LOW);
   delay(50);
   _writePin(_PIN_DEF_RST, _DEF_HIGH);
-  delay(50);
+  delay(100);
 
 
-  spiBegin(_DEF_SPI1);
-  spiSetBitOrder(_DEF_SPI1, SPI_FIRSTBIT_MSB);
-  spiSetClockDivider(_DEF_SPI1, SPI_BAUDRATEPRESCALER_8);
-  spiSetDataMode(_DEF_SPI1, SPI_MODE0);
+  spiBegin(spi_ch);
+  spiSetBitOrder(spi_ch, SPI_FIRSTBIT_MSB);
+  spiSetClockDivider(spi_ch, SPI_BAUDRATEPRESCALER_8);
+  spiSetDataMode(spi_ch, SPI_MODE0);
+
+  spiAttachTxInterrupt(spi_ch, TransferDoneISR);
 
   ili9225InitRegs();
 
 
+  /*
   ili9225SetAddrWindow(0, 0, _width-1, _height-1);
   for (int i=0; i<_width*_height; i++)
   {
-    _writeData16(0x0000);
+    _writeData16(0xF800);
   }
-
-  ili9225SetAddrWindow(0, 0, _width-1, _height-1);
-  for (int i=0; i<_width*_height; i++)
-  {
-    //_writeData16(blue);
-  }
-
-
-  ili9225SetAddrWindow(0, 0, _width-1, _height-1);
-  for (int i=0; i<_width*_height; i++)
-  {
-    lcd_buf[i] = blue;
-  }
-
-  uint32_t pre_time;
-  pre_time = millis();
-  _writePin(_PIN_DEF_DC, _DEF_HIGH);
-  _writePin(_PIN_DEF_CS, _DEF_LOW);
-  spiDmaTransfer(spi_ch, (uint8_t *)lcd_buf, _width*_height, 100);
-  _writePin(_PIN_DEF_CS, _DEF_HIGH);
-  logPrintf("%d ms\n", millis()-pre_time);
+  */
 
   return true;
 }
@@ -208,9 +214,9 @@ void ili9225InitRegs(void)
 
 }
 
-void ili9225SetRotation(uint8_t mode)
-{
-}
+//void ili9225SetRotation(uint8_t mode)
+//{
+//}
 
 void ili9225SetAddrWindow(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1)
 {
@@ -239,6 +245,46 @@ uint16_t ili9225GetWidth(void)
 uint16_t ili9225GetHeight(void)
 {
   return _height;
+}
+
+void ili9225SetFrameBuffer(uint16_t *p_buf)
+{
+  p_frame_buf = p_buf;
+}
+
+bool ili9225DrawAvailable(void)
+{
+  return is_tx_done;
+}
+
+bool ili9225RequestDraw(void)
+{
+  if (is_tx_done != true || p_frame_buf == NULL)
+  {
+    return false;
+  }
+
+  fps_pre_time = millis();
+
+  ili9225SetAddrWindow(0, 0, _width-1, _height-1);
+
+  _writePin(_PIN_DEF_DC, _DEF_HIGH);
+  _writePin(_PIN_DEF_CS, _DEF_LOW);
+
+  is_tx_done = false;
+  spiDmaTransfer(spi_ch, (uint8_t *)p_frame_buf, _width*_height, 0);
+
+  return true;
+}
+
+uint32_t ili9225GetFps(void)
+{
+  return fps_count;
+}
+
+uint32_t ili9225GetFpsTime(void)
+{
+  return fps_time;
 }
 
 

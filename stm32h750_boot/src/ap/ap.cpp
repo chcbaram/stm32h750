@@ -27,6 +27,9 @@ static cmd_t cmd_boot;
 
 void apInit(void)
 {
+  uint8_t boot_param;
+
+
   hwInit();
 
   cmdifOpen(_DEF_UART1, 57600);
@@ -36,6 +39,15 @@ void apInit(void)
 
 
   boot_mode = resetGetCount();
+  boot_param = rtcReadBackupData(HW_RESET_BOOT_MODE);
+
+
+  if (boot_param & (1<<7))
+  {
+    boot_mode = BOOT_MODE_LOADER;
+    boot_param &= ~(1<<7);
+    rtcWriteBackupData(HW_RESET_BOOT_MODE, boot_param);
+  }
 
 
   switch(boot_mode)

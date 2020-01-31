@@ -326,7 +326,6 @@ void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi)
   volatile uint16_t length;
   spi_t  *p_spi;
 
-  logPrintf("irq\n");
   if (hspi->Instance == spi_tbl[_DEF_SPI1].h_spi.Instance)
   {
     p_spi = &spi_tbl[_DEF_SPI1];

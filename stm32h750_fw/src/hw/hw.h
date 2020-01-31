@@ -16,6 +16,8 @@ extern "C" {
 
 #include "hw_def.h"
 
+#include "reset.h"
+#include "rtc.h"
 #include "delay.h"
 #include "millis.h"
 #include "led.h"
@@ -28,6 +30,8 @@ extern "C" {
 #include "pwm.h"
 #include "spi.h"
 #include "ili9225.h"
+#include "lcd.h"
+
 
 #include "sd.h"
 #include "fatfs/fatfs.h"
