@@ -81,7 +81,7 @@ void spiBegin(uint8_t spi_ch)
     case _DEF_SPI1:
       p_spi = &spi_tbl[spi_ch];
 
-      p_spi->h_spi.Instance               = SPI1;
+      p_spi->h_spi.Instance               = SPI4;
       p_spi->h_spi.Init.Mode              = SPI_MODE_MASTER;
       p_spi->h_spi.Init.Direction         = SPI_DIRECTION_2LINES;
       p_spi->h_spi.Init.DataSize          = SPI_DATASIZE_16BIT;
@@ -89,7 +89,7 @@ void spiBegin(uint8_t spi_ch)
       p_spi->h_spi.Init.CLKPhase          = SPI_PHASE_1EDGE;
       p_spi->h_spi.Init.NSS               = SPI_NSS_SOFT;
       p_spi->h_spi.Init.NSSPMode          = SPI_NSS_PULSE_DISABLE;
-      p_spi->h_spi.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_8; // 50 Mbit
+      p_spi->h_spi.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2; // 50 Mbit
       p_spi->h_spi.Init.FirstBit          = SPI_FIRSTBIT_MSB;
       p_spi->h_spi.Init.TIMode            = SPI_TIMODE_DISABLE;
       p_spi->h_spi.Init.CRCCalculation    = SPI_CRCCALCULATION_DISABLE;
@@ -364,7 +364,7 @@ void DMA1_Stream1_IRQHandler(void)
   HAL_DMA_IRQHandler(spi_tbl[_DEF_SPI1].h_spi.hdmatx);
 }
 
-void SPI1_IRQHandler(void)
+void SPI4_IRQHandler(void)
 {
   HAL_SPI_IRQHandler(&spi_tbl[_DEF_SPI1].h_spi);
 }
@@ -384,29 +384,29 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef *hspi)
 
     /*##-1- Enable peripherals and GPIO Clocks #################################*/
     /* Enable SPI clock */
-    __HAL_RCC_SPI1_CLK_ENABLE();
+    __HAL_RCC_SPI4_CLK_ENABLE();
 
     /*##-2- Configure peripheral GPIO ##########################################*/
 
-    __HAL_RCC_GPIOA_CLK_ENABLE();
-    __HAL_RCC_GPIOD_CLK_ENABLE();
-    /**SPI1 GPIO Configuration
-    PA5     ------> SPI1_SCK
-    PD7     ------> SPI1_MOSI
+    __HAL_RCC_GPIOE_CLK_ENABLE();
+    /**SPI4 GPIO Configuration
+    PE12     ------> SPI4_SCK
+    PE14     ------> SPI4_MOSI
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_5;
+    GPIO_InitStruct.Pin = GPIO_PIN_12;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-    GPIO_InitStruct.Alternate = GPIO_AF5_SPI1;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    GPIO_InitStruct.Alternate = GPIO_AF5_SPI4;
+    HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = GPIO_PIN_7;
+    GPIO_InitStruct.Pin = GPIO_PIN_14;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-    GPIO_InitStruct.Alternate = GPIO_AF5_SPI1;
-    HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+    GPIO_InitStruct.Alternate = GPIO_AF5_SPI4;
+    HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+
 
 
     if (p_spi->is_dma_init == false)
@@ -417,7 +417,7 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef *hspi)
 
       /* Configure the DMA handler for Transmission process */
       p_spi->hdma_tx.Instance                 = DMA1_Stream1;
-      p_spi->hdma_tx.Init.Request             = DMA_REQUEST_SPI1_TX;
+      p_spi->hdma_tx.Init.Request             = DMA_REQUEST_SPI4_TX;
       p_spi->hdma_tx.Init.Direction           = DMA_MEMORY_TO_PERIPH;
       p_spi->hdma_tx.Init.PeriphInc           = DMA_PINC_DISABLE;
       p_spi->hdma_tx.Init.MemInc              = DMA_MINC_ENABLE;
@@ -434,12 +434,12 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef *hspi)
 
 
       /*##-4- Configure the NVIC for DMA #########################################*/
-      /* NVIC configuration for DMA transfer complete interrupt (SPI1_TX) */
+      /* NVIC configuration for DMA transfer complete interrupt (SPI4_TX) */
       HAL_NVIC_SetPriority(DMA1_Stream1_IRQn, 5, 1);
       HAL_NVIC_EnableIRQ(DMA1_Stream1_IRQn);
 
-      HAL_NVIC_SetPriority(SPI1_IRQn, 5, 0);
-      HAL_NVIC_EnableIRQ(SPI1_IRQn);
+      HAL_NVIC_SetPriority(SPI4_IRQn, 5, 0);
+      HAL_NVIC_EnableIRQ(SPI4_IRQn);
 
       p_spi->is_dma_init = true;
     }
@@ -454,15 +454,15 @@ void HAL_SPI_MspDeInit(SPI_HandleTypeDef *hspi)
   if (hspi->Instance == spi_tbl[_DEF_SPI1].h_spi.Instance)
   {
     /*##-1- Reset peripherals ##################################################*/
-    __HAL_RCC_SPI1_CLK_DISABLE();
+    __HAL_RCC_SPI4_CLK_DISABLE();
 
     /*##-2- Disable peripherals and GPIO Clocks ################################*/
-    /**SPI1 GPIO Configuration
-    PA5     ------> SPI1_SCK
-    PD7     ------> SPI1_MOSI
+    /**SPI4 GPIO Configuration
+    PE12     ------> SPI4_SCK
+    PE14     ------> SPI4_MOSI
     */
-    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_5);
-    HAL_GPIO_DeInit(GPIOD, GPIO_PIN_7);
+    HAL_GPIO_DeInit(GPIOE, GPIO_PIN_12);
+    HAL_GPIO_DeInit(GPIOE, GPIO_PIN_14);
 
 
     HAL_DMA_DeInit(&spi_tbl[_DEF_SPI1].hdma_tx);

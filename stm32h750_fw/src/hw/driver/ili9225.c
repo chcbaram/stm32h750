@@ -131,7 +131,7 @@ bool ili9225Init()
 
   spiBegin(spi_ch);
   spiSetBitOrder(spi_ch, SPI_FIRSTBIT_MSB);
-  spiSetClockDivider(spi_ch, SPI_BAUDRATEPRESCALER_8);
+  spiSetClockDivider(spi_ch, SPI_BAUDRATEPRESCALER_2);
   spiSetDataMode(spi_ch, SPI_MODE0);
 
   spiAttachTxInterrupt(spi_ch, TransferDoneISR);

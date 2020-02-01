@@ -35,6 +35,8 @@ extern "C" {
 #include "button.h"
 #include "adc.h"
 #include "joypad.h"
+#include "dac.h"
+#include "speaker.h"
 
 #include "sd.h"
 #include "fatfs/fatfs.h"

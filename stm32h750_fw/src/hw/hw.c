@@ -68,6 +68,8 @@ void hwInit(void)
   logPrintf("Start...\r\n");
 
 
+  dacInit();
+  speakerInit();
   ili9225Init();
   lcdInit();
 }

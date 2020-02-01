@@ -78,6 +78,11 @@
 
 #define _USE_HW_JOYPAD
 
+#define _USE_HW_DAC
+#define      HW_DAC_MAX_CH          1
+
+#define _USE_HW_SPEAKER
+
 
 #define _USE_HW_CMDIF
 #define      HW_CMDIF_LIST_MAX              32

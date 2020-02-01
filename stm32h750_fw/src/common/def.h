@@ -17,6 +17,8 @@
 #include <stdarg.h>
 
 
+#include "def_err.h"
+
 
 
 #define _DEF_LED1                   0
@@ -60,11 +62,32 @@
 
 
 
+typedef uint32_t  err_code_t;
+
 #define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
 
 #ifndef map
 #define map(value, in_min, in_max, out_min, out_max) ((value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
 #endif
+
+
+typedef struct
+{
+  uint32_t  ptr_in;
+  uint32_t  ptr_out;
+  uint32_t  length;
+  uint8_t  *p_buf;
+} ring_buf_t;
+
+
+typedef struct
+{
+  uint32_t  ptr_in;
+  uint32_t  ptr_out;
+  uint32_t  length;
+  uint16_t  *p_buf;
+} ring_buf16_t;
+
 
 typedef struct
 {
