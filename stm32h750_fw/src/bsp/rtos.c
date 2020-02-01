@@ -135,6 +135,8 @@ void HAL_ResumeTick(void)
   __HAL_TIM_ENABLE_IT(&TimHandle, TIM_IT_UPDATE);
 }
 
+extern void swtimerISR(void);
+
 /**
   * @brief  Period elapsed callback in non blocking mode
   * @note   This function is called  when TIM6 interrupt took place, inside
@@ -149,6 +151,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   UNUSED(htim);
 
   HAL_IncTick();
+  swtimerISR();
 }
 
 /**

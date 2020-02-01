@@ -67,6 +67,22 @@ void Error_Handler(void);
 #define SPI1_RS_GPIO_Port GPIOC
 #define LCD_RESET_Pin GPIO_PIN_2
 #define LCD_RESET_GPIO_Port GPIOC
+#define JOYPAD_X_Pin GPIO_PIN_7
+#define JOYPAD_X_GPIO_Port GPIOA
+#define JOYPAD_Y_Pin GPIO_PIN_5
+#define JOYPAD_Y_GPIO_Port GPIOC
+#define BTN_HOME_Pin GPIO_PIN_9
+#define BTN_HOME_GPIO_Port GPIOA
+#define BTN_MENU_Pin GPIO_PIN_0
+#define BTN_MENU_GPIO_Port GPIOD
+#define BTN_SELECT_Pin GPIO_PIN_4
+#define BTN_SELECT_GPIO_Port GPIOD
+#define BTN_START_Pin GPIO_PIN_6
+#define BTN_START_GPIO_Port GPIOD
+#define BTN_B_Pin GPIO_PIN_5
+#define BTN_B_GPIO_Port GPIOB
+#define BTN_A_Pin GPIO_PIN_8
+#define BTN_A_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

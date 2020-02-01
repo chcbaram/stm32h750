@@ -23,6 +23,7 @@ extern "C" {
 #include "led.h"
 #include "uart.h"
 #include "cmdif.h"
+#include "swtimer.h"
 #include "qspi.h"
 #include "flash.h"
 #include "usb.h"
@@ -31,7 +32,9 @@ extern "C" {
 #include "spi.h"
 #include "ili9225.h"
 #include "lcd.h"
-
+#include "button.h"
+#include "adc.h"
+#include "joypad.h"
 
 #include "sd.h"
 #include "fatfs/fatfs.h"

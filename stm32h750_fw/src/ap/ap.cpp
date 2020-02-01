@@ -67,6 +67,9 @@ void apMain(void)
     {
       pre_time = millis();
       ledToggle(_DEF_LED1);
+
+      //logPrintf("X : %d\n", (int)joypadGetX());
+      //logPrintf("Y : %d\n", (int)joypadGetY());
     }
 
 
