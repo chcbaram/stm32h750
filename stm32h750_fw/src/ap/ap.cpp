@@ -41,6 +41,14 @@ void testCmdif(void);
 
 
 
+extern "C"
+{
+void gnuboyMain (void);
+}
+
+static void threadEmul(void const *argument);
+
+
 void apInit(void)
 {
   hwInit();
@@ -48,6 +56,17 @@ void apInit(void)
   cmdifOpen(_DEF_UART1, 57600);
 
   cmdifAdd("test", testCmdif);
+
+  osThreadDef(threadEmul, threadEmul, _HW_DEF_RTOS_THREAD_PRI_EMUL, 0, _HW_DEF_RTOS_THREAD_MEM_EMUL);
+  if (osThreadCreate(osThread(threadEmul), NULL) != NULL)
+  {
+    logPrintf("threadEmul \t\t: OK\r\n");
+  }
+  else
+  {
+    logPrintf("threadEmul \t\t: Fail\r\n");
+    while(1);
+  }
 }
 
 void apMain(void)
@@ -68,7 +87,7 @@ void apMain(void)
       //logPrintf("X : %d\n", (int)joypadGetX());
       //logPrintf("Y : %d\n", (int)joypadGetY());
     }
-
+#if 0
     if (lcdDrawAvailable() > 0)
     {
       lcdClearBuffer(black);
@@ -86,10 +105,23 @@ void apMain(void)
 
       lcdRequestDraw();
     }
+#endif
   }
 }
 
 
+static void threadEmul(void const *argument)
+{
+  UNUSED(argument);
+
+
+  gnuboyMain();
+
+  while(1)
+  {
+    delay(100);
+  }
+}
 
 
 

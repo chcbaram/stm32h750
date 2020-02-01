@@ -93,6 +93,16 @@ typedef struct
 {
   uint32_t magic_number;
 
+  char file_path[256];
+  char file_name[256];
+  uint32_t file_length;
+
+} flash_rom_tag_t;
+
+typedef struct
+{
+  uint32_t magic_number;
+
   //-- fw info
   //
   uint8_t  version_str[32];

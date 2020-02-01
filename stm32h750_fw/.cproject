@@ -88,6 +88,9 @@
 								<option id="com.atollic.truestudio.gcc.optimization.prep_data.1409453658" name="Prepare dead data removal" superClass="com.atollic.truestudio.gcc.optimization.prep_data" useByScannerDiscovery="false" value="true" valueType="boolean"/>
 								<option id="com.atollic.truestudio.gcc.symbols.defined.956079900" name="Defined symbols" superClass="com.atollic.truestudio.gcc.symbols.defined" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="STM32H750xx"/>
+									<listOptionValue builtIn="false" value="GNUBOY_NO_MINIZIP"/>
+									<listOptionValue builtIn="false" value="GNUBOY_NO_SCREENSHOT"/>
+									<listOptionValue builtIn="false" value="IS_LITTLE_ENDIAN"/>
 									<listOptionValue builtIn="false" value="USE_USB_FS"/>
 								</option>
 								<option id="com.atollic.truestudio.exe.debug.toolchain.gcc.optimization.level.917836853" name="Optimization Level" superClass="com.atollic.truestudio.exe.debug.toolchain.gcc.optimization.level" useByScannerDiscovery="false" value="com.atollic.truestudio.gcc.optimization.level.00" valueType="enumerated"/>
@@ -136,6 +139,9 @@
 								<option id="com.atollic.truestudio.gpp.optimization.prep_data.228202271" name="Prepare dead data removal" superClass="com.atollic.truestudio.gpp.optimization.prep_data" useByScannerDiscovery="false" value="true" valueType="boolean"/>
 								<option id="com.atollic.truestudio.gpp.symbols.defined.312874360" name="Defined symbols" superClass="com.atollic.truestudio.gpp.symbols.defined" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="STM32H750xx"/>
+									<listOptionValue builtIn="false" value="GNUBOY_NO_MINIZIP"/>
+									<listOptionValue builtIn="false" value="GNUBOY_NO_SCREENSHOT"/>
+									<listOptionValue builtIn="false" value="IS_LITTLE_ENDIAN"/>
 									<listOptionValue builtIn="false" value="USE_USB_FS"/>
 								</option>
 								<option id="com.atollic.truestudio.exe.debug.toolchain.gpp.optimization.level.1042145956" name="Optimization Level" superClass="com.atollic.truestudio.exe.debug.toolchain.gpp.optimization.level" useByScannerDiscovery="false" value="com.atollic.truestudio.gpp.optimization.level.00" valueType="enumerated"/>
@@ -162,6 +168,34 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<folderInfo id="com.atollic.truestudio.exe.debug.1210307224.179178578" name="/" resourcePath="src/ap/gnuboy">
+						<toolChain id="com.atollic.truestudio.exe.debug.toolchain.691044495" name="Atollic ARM Tools" superClass="com.atollic.truestudio.exe.debug.toolchain" unusedChildren="">
+							<option id="com.atollic.truestudio.general.runtimelib.1305200641.118864881" name="Runtime Library" superClass="com.atollic.truestudio.general.runtimelib.1305200641"/>
+							<option id="com.atollic.truestudio.toolchain_options.mcu.1819023910.1581607361" name="Microcontroller" superClass="com.atollic.truestudio.toolchain_options.mcu.1819023910"/>
+							<option id="com.atollic.truestudio.toolchain_options.vendor.795429348.8465334" name="Vendor name" superClass="com.atollic.truestudio.toolchain_options.vendor.795429348"/>
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="com.atollic.truestudio.exe.debug.toolchain.platform" isAbstract="false" name="Debug platform" osList="all" superClass="com.atollic.truestudio.exe.debug.toolchain.platform"/>
+							<tool id="com.atollic.truestudio.exe.debug.toolchain.as.1778585951" name="Assembler" superClass="com.atollic.truestudio.exe.debug.toolchain.as.86666527">
+								<inputType id="com.atollic.truestudio.as.input.1112375908" name="Input" superClass="com.atollic.truestudio.as.input"/>
+							</tool>
+							<tool id="com.atollic.truestudio.exe.debug.toolchain.gcc.1083866922" name="C Compiler" superClass="com.atollic.truestudio.exe.debug.toolchain.gcc.1061442425">
+								<option id="com.atollic.truestudio.exe.debug.toolchain.gcc.optimization.level.1942826291" name="Optimization Level" superClass="com.atollic.truestudio.exe.debug.toolchain.gcc.optimization.level" useByScannerDiscovery="false" value="com.atollic.truestudio.gcc.optimization.level.02" valueType="enumerated"/>
+								<inputType id="com.atollic.truestudio.gcc.input.1920617978" superClass="com.atollic.truestudio.gcc.input"/>
+							</tool>
+							<tool id="com.atollic.truestudio.exe.debug.toolchain.ld.170269707" name="C Linker" superClass="com.atollic.truestudio.exe.debug.toolchain.ld.1704341799"/>
+							<tool id="com.atollic.truestudio.exe.debug.toolchain.gpp.1130551914" name="C++ Compiler" superClass="com.atollic.truestudio.exe.debug.toolchain.gpp.604374064">
+								<inputType id="com.atollic.truestudio.gpp.input.2046217159" superClass="com.atollic.truestudio.gpp.input"/>
+							</tool>
+							<tool id="com.atollic.truestudio.exe.debug.toolchain.ldcc.1276880821" name="C++ Linker" superClass="com.atollic.truestudio.exe.debug.toolchain.ldcc.1489405265"/>
+							<tool id="com.atollic.truestudio.ar.base.926058459" name="Archiver" superClass="com.atollic.truestudio.ar.base.818186791"/>
+							<tool id="com.atollic.truestudio.exe.debug.toolchain.secoutput.1160602101" name="Other" superClass="com.atollic.truestudio.exe.debug.toolchain.secoutput.839002317"/>
+						</toolChain>
+					</folderInfo>
+					<fileInfo id="com.atollic.truestudio.exe.debug.1210307224.376228046" name="resize.c" rcbsApplicability="disable" resourcePath="src/hw/core/resize.c" toolsToInvoke="com.atollic.truestudio.exe.debug.toolchain.gcc.1061442425.913536546">
+						<tool id="com.atollic.truestudio.exe.debug.toolchain.gcc.1061442425.913536546" name="C Compiler" superClass="com.atollic.truestudio.exe.debug.toolchain.gcc.1061442425">
+							<option id="com.atollic.truestudio.exe.debug.toolchain.gcc.optimization.level.1201340788" superClass="com.atollic.truestudio.exe.debug.toolchain.gcc.optimization.level" useByScannerDiscovery="false" value="com.atollic.truestudio.gcc.optimization.level.02" valueType="enumerated"/>
+							<inputType id="com.atollic.truestudio.gcc.input.1001185" superClass="com.atollic.truestudio.gcc.input"/>
+						</tool>
+					</fileInfo>
 					<sourceEntries>
 						<entry excluding="src/ap/gnuboy/unzip|src/ap/gnuboy/sys/x11|src/ap/gnuboy/sys/windows|src/ap/gnuboy/sys/thinlib|src/ap/gnuboy/sys/svga|src/ap/gnuboy/sys/sdl|src/ap/gnuboy/sys/pc|src/ap/gnuboy/sys/oss|src/ap/gnuboy/sys/nix|src/ap/gnuboy/sys/linux|src/ap/gnuboy/sys/dummy|src/ap/gnuboy/sys/dos|src/ap/gnuboy/sys/dingoo|src/bsp/FreeRTOS/Source/portable/Common|src/bsp/FreeRTOS/Source/portable/GCC/ARM_CM7_MPU|src/bsp/FreeRTOS/Source/portable/MemMang/heap_5.c|src/bsp/FreeRTOS/Source/portable/MemMang/heap_3.c|src/bsp/FreeRTOS/Source/portable/MemMang/heap_2.c|src/bsp/FreeRTOS/Source/portable/MemMang/heap_1.c|src/bsp/FreeRTOS/Source/portable/GCC/ARM_CM4F|src/bsp/FreeRTOS/Source/portable/GCC/ARM_CM4_MPU|src/bsp/FreeRTOS/Source/portable/GCC/ARM_CM33_NTZ|src/bsp/FreeRTOS/Source/portable/GCC/ARM_CM33|src/bsp/FreeRTOS/Source/portable/GCC/ARM_CM3_MPU|src/bsp/FreeRTOS/Source/portable/GCC/ARM_CM3|src/bsp/FreeRTOS/Source/portable/GCC/ARM_CM23_NTZ|src/bsp/FreeRTOS/Source/portable/GCC/ARM_CM23|src/bsp/FreeRTOS/Source/portable/GCC/ARM_CM0|src/bsp/FreeRTOS/Source/portable/Tasking|src/bsp/FreeRTOS/Source/portable/RVDS|src/bsp/FreeRTOS/Source/portable/Keil|src/bsp/FreeRTOS/Source/portable/IAR|src/bsp/FreeRTOS/Source/CMSIS_RTOS_V2|src/lib/FatFs/src/option/ccsbcs.c|src/lib/FatFs/src/option/cc949.c|src/lib/FatFs/src/option/cc936.c|src/lib/FatFs/src/option/cc950.c|src/lib/FatFs/src/option/cc932.c|src/lib/STM32_USB_Device_Library/Class|src/lib/cubemx|src/lib/cubemx/stm32h750/Drivers/CMSIS" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>

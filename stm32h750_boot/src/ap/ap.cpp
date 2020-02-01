@@ -23,6 +23,7 @@ uint8_t boot_mode = BOOT_MODE_LOADER;
 static cmd_t cmd_boot;
 
 
+extern "C" int gnuboyFiler();
 
 
 void apInit(void)
@@ -47,6 +48,11 @@ void apInit(void)
     boot_mode = BOOT_MODE_LOADER;
     boot_param &= ~(1<<7);
     rtcWriteBackupData(HW_RESET_BOOT_MODE, boot_param);
+  }
+
+  if (buttonGetPressed(_DEF_HW_BTN_MENU))
+  {
+    gnuboyFiler();
   }
 
 

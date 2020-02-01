@@ -20,7 +20,7 @@
 #define _USE_HW_FLASH
 #define _USE_HW_SD
 #define _USE_HW_FATFS
-
+#define _USE_HW_FILES
 
 
 #define _USE_HW_RTC
@@ -46,6 +46,29 @@
 
 #define _USE_HW_GPIO
 #define      HW_GPIO_MAX_CH         1
+
+#define _USE_HW_PWM
+#define      HW_PWM_MAX_CH          1
+
+#define _USE_HW_SPI
+#define      HW_SPI_MAX_CH          1
+
+#define _USE_HW_ILI9225
+
+#define _USE_HW_LCD
+#define      HW_LCD_WIDTH           220
+#define      HW_LCD_HEIGHT          176
+
+#define _USE_HW_BUTTON
+#define      HW_BUTTON_MAX_CH       10
+
+#define _USE_HW_SWTIMER
+#define      HW_SWTIMER_MAX_CH      8
+
+#define _USE_HW_ADC
+#define      HW_ADC_MAX_CH          2
+
+#define _USE_HW_JOYPAD
 
 
 
@@ -73,6 +96,21 @@
 #define FLASH_ADDR_START              0x08000000
 #define FLASH_ADDR_END                0x08200000
 
+
+#define FLASH_ROM_TAG                 0x90800000
+#define FLASH_ROM_ADDR                0x90800400
+
+
+#define _DEF_HW_BTN_A               0
+#define _DEF_HW_BTN_B               1
+#define _DEF_HW_BTN_SELECT          2
+#define _DEF_HW_BTN_START           3
+#define _DEF_HW_BTN_MENU            4
+#define _DEF_HW_BTN_HOME            5
+#define _DEF_HW_BTN_LEFT            6
+#define _DEF_HW_BTN_RIGHT           7
+#define _DEF_HW_BTN_UP              8
+#define _DEF_HW_BTN_DOWN            9
 
 
 

@@ -14,7 +14,7 @@
 
 
 __attribute__((section(".version"))) uint8_t boot_name[32] = "STM32H750_B/D";
-__attribute__((section(".version"))) uint8_t boot_ver[32]  = "B200128R1";
+__attribute__((section(".version"))) uint8_t boot_ver[32]  = "B200202R1";
 
 
 
@@ -26,9 +26,16 @@ void hwInit(void)
   delayInit();
   millis();
 
+  swtimerInit();
   cmdifInit();
   ledInit();
   gpioInit();
+  pwmInit();
+  spiInit();
+  adcInit();
+  joypadInit();
+  buttonInit();
+
   uartInit();
   uartOpen(_DEF_UART1, 57600);
   uartOpen(_DEF_UART2, 57600);
@@ -50,6 +57,14 @@ void hwInit(void)
   {
     fatfsInit();
   }
+
+
+  ili9225Init();
+  lcdInit();
+
+  lcdPrintf(0, 0*16, white, "%s", boot_name);
+  lcdPrintf(0, 1*16, white, "%s", boot_ver);
+  lcdUpdateDraw();
 }
 
 

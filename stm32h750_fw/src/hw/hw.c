@@ -50,21 +50,12 @@ void hwInit(void)
   //qspiInit();
   //flashInit();
 
-#if HW_USE_CDC == 1
-  usbInit();
-  usbBegin(USB_CDC_MODE);
-  vcpInit();
-#endif
 
   if (sdInit() == true)
   {
     fatfsInit();
-
-#if HW_USE_MSC == 1
-    //usbInit();
-    //usbBegin(USB_MSC_MODE);
-#endif
   }
+
 
   logPrintf("Start...\r\n");
 
@@ -73,6 +64,26 @@ void hwInit(void)
   speakerInit();
   ili9225Init();
   lcdInit();
+
+  if (sdIsDetected() == true && buttonGetPressed(_DEF_HW_BTN_HOME) == true)
+  {
+    usbInit();
+    usbBegin(USB_MSC_MODE);
+
+    while(1)
+    {
+      lcdPrintf(0,  0, white, "USB Storage Mode");
+      lcdPrintf(0, 16, white, "*");
+      lcdUpdateDraw();
+      delay(100);
+    }
+  }
+  else
+  {
+    usbInit();
+    usbBegin(USB_CDC_MODE);
+    vcpInit();
+  }
 }
 
 void hwJumpToBoot(void)

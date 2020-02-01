@@ -161,6 +161,16 @@ SECTIONS
   } >DTCMRAM AT> FLASH
 
   
+  .sram_d1 :
+  {
+    . = ALIGN(4);
+    _ssram_d1 = .;       /* create a global symbol at sram_d1 start */
+    *(.sram_d1)
+    *(.sram_d1*)
+    
+    . = ALIGN(4);
+    _esram_d1 = .;       /* create a global symbol at sram_d1 end */
+  } >RAM_D1   
   
 
   .sram_d3 :

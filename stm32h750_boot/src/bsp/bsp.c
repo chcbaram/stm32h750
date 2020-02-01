@@ -88,8 +88,8 @@ void bspInit(void)
 #if 0
   /* Write-back, write and read allocate */
   MPU_InitStruct.Enable           = MPU_REGION_ENABLE;
-  MPU_InitStruct.BaseAddress      = QSPI_ADDR_START;
-  MPU_InitStruct.Size             = MPU_REGION_SIZE_2MB;
+  MPU_InitStruct.BaseAddress      = 0x90000000;
+  MPU_InitStruct.Size             = MPU_REGION_SIZE_16MB;
   MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
   MPU_InitStruct.IsBufferable     = MPU_ACCESS_BUFFERABLE;
   MPU_InitStruct.IsCacheable      = MPU_ACCESS_CACHEABLE;
@@ -187,7 +187,8 @@ void SystemClock_Config(void)
     Error_Handler();
   }
   PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_RTC|RCC_PERIPHCLK_USART1
-                              |RCC_PERIPHCLK_SDMMC|RCC_PERIPHCLK_USB
+                              |RCC_PERIPHCLK_SPI4|RCC_PERIPHCLK_SDMMC
+                              |RCC_PERIPHCLK_ADC|RCC_PERIPHCLK_USB
                               |RCC_PERIPHCLK_QSPI;
   PeriphClkInitStruct.PLL2.PLL2M = 1;
   PeriphClkInitStruct.PLL2.PLL2N = 25;
@@ -199,8 +200,10 @@ void SystemClock_Config(void)
   PeriphClkInitStruct.PLL2.PLL2FRACN = 0;
   PeriphClkInitStruct.QspiClockSelection = RCC_QSPICLKSOURCE_D1HCLK;
   PeriphClkInitStruct.SdmmcClockSelection = RCC_SDMMCCLKSOURCE_PLL2;
+  PeriphClkInitStruct.Spi45ClockSelection = RCC_SPI45CLKSOURCE_D2PCLK1;
   PeriphClkInitStruct.Usart16ClockSelection = RCC_USART16CLKSOURCE_D2PCLK2;
   PeriphClkInitStruct.UsbClockSelection = RCC_USBCLKSOURCE_HSI48;
+  PeriphClkInitStruct.AdcClockSelection = RCC_ADCCLKSOURCE_PLL2;
   PeriphClkInitStruct.RTCClockSelection = RCC_RTCCLKSOURCE_LSI;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
   {

@@ -41,6 +41,12 @@
 #define _DEF_RIGHT                  1
 
 
+#define _DEF_SPI1                   0
+#define _DEF_SPI2                   1
+#define _DEF_SPI3                   2
+#define _DEF_SPI4                   3
+
+
 #define _DEF_INPUT                  0
 #define _DEF_INPUT_PULLUP           1
 #define _DEF_INPUT_PULLDOWN         2
@@ -59,6 +65,20 @@
 
 #define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
 
+#ifndef map
+#define map(value, in_min, in_max, out_min, out_max) ((value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
+#endif
+
+
+typedef struct
+{
+  uint32_t magic_number;
+
+  char file_path[256];
+  char file_name[256];
+  uint32_t file_length;
+
+} flash_rom_tag_t;
 
 
 typedef struct

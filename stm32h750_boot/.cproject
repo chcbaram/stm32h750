@@ -152,11 +152,12 @@
 							<option id="com.atollic.truestudio.general.runtimelib.1305200641.844214388" name="Runtime Library" superClass="com.atollic.truestudio.general.runtimelib.1305200641"/>
 							<option id="com.atollic.truestudio.toolchain_options.mcu.1819023910.716697674" name="Microcontroller" superClass="com.atollic.truestudio.toolchain_options.mcu.1819023910"/>
 							<option id="com.atollic.truestudio.toolchain_options.vendor.795429348.644949407" name="Vendor name" superClass="com.atollic.truestudio.toolchain_options.vendor.795429348"/>
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="com.atollic.truestudio.exe.debug.toolchain.platform" isAbstract="false" name="Debug platform" osList="all" superClass="com.atollic.truestudio.exe.debug.toolchain.platform"/>
 							<tool id="com.atollic.truestudio.exe.debug.toolchain.as.1385077258" name="Assembler" superClass="com.atollic.truestudio.exe.debug.toolchain.as.86666527">
 								<inputType id="com.atollic.truestudio.as.input.1606970714" name="Input" superClass="com.atollic.truestudio.as.input"/>
 							</tool>
 							<tool id="com.atollic.truestudio.exe.debug.toolchain.gcc.42765990" name="C Compiler" superClass="com.atollic.truestudio.exe.debug.toolchain.gcc.1061442425">
-								<option id="com.atollic.truestudio.exe.debug.toolchain.gcc.optimization.level.1066389467" superClass="com.atollic.truestudio.exe.debug.toolchain.gcc.optimization.level" useByScannerDiscovery="false" value="com.atollic.truestudio.gcc.optimization.level.0s" valueType="enumerated"/>
+								<option id="com.atollic.truestudio.exe.debug.toolchain.gcc.optimization.level.1066389467" name="Optimization Level" superClass="com.atollic.truestudio.exe.debug.toolchain.gcc.optimization.level" useByScannerDiscovery="false" value="com.atollic.truestudio.gcc.optimization.level.0s" valueType="enumerated"/>
 								<inputType id="com.atollic.truestudio.gcc.input.936961143" superClass="com.atollic.truestudio.gcc.input"/>
 							</tool>
 							<tool id="com.atollic.truestudio.exe.debug.toolchain.ld.1437241351" name="C Linker" superClass="com.atollic.truestudio.exe.debug.toolchain.ld.1704341799"/>
@@ -169,7 +170,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="src/lib/FatFs/src/option/ccsbcs.c|src/lib/FatFs/src/option/cc949.c|src/lib/FatFs/src/option/cc936.c|src/lib/FatFs/src/option/cc950.c|src/lib/FatFs/src/option/cc932.c|src/lib/STM32_USB_Device_Library/Class|src/lib/cubemx|src/lib/cubemx/stm32h750/Drivers/CMSIS" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="src/lib/FatFs/src/option/cc949.c|src/lib/STM32_USB_Device_Library/Class|src/lib/FatFs/src/option/cc950.c|src/lib/FatFs/src/option/cc932.c|src/lib/cubemx/stm32h750/Drivers/CMSIS|src/lib/FatFs/src/option/cc936.c|src/lib/cubemx|src/lib/FatFs/src/option/ccsbcs.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -303,7 +304,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="src/lib/FatFs/src/option/ccsbcs.c|src/lib/FatFs/src/option/cc949.c|src/lib/FatFs/src/option/cc936.c|src/lib/FatFs/src/option/cc950.c|src/lib/FatFs/src/option/cc932.c|src/lib/STM32_USB_Device_Library/Class|src/lib/cubemx|src/lib/cubemx/stm32h750/Drivers/CMSIS" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="src/lib/FatFs/src/option/cc949.c|src/lib/STM32_USB_Device_Library/Class|src/lib/FatFs/src/option/cc950.c|src/lib/FatFs/src/option/cc932.c|src/lib/cubemx/stm32h750/Drivers/CMSIS|src/lib/FatFs/src/option/cc936.c|src/lib/cubemx|src/lib/FatFs/src/option/ccsbcs.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

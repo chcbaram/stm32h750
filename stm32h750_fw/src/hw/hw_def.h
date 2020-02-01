@@ -54,7 +54,7 @@
 #define _USE_HW_VCP
 #define _USE_HW_USB
 #define      HW_USE_CDC             1
-#define      HW_USE_MSC             0
+#define      HW_USE_MSC             1
 
 #define _USE_HW_GPIO
 #define      HW_GPIO_MAX_CH         1
@@ -114,6 +114,12 @@
 #define _DEF_HW_BTN_RIGHT           7
 #define _DEF_HW_BTN_UP              8
 #define _DEF_HW_BTN_DOWN            9
+
+
+
+#define FLASH_ROM_TAG                 0x90800000
+#define FLASH_ROM_ADDR                0x90800400
+
 
 
 

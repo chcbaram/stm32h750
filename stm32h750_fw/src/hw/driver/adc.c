@@ -86,6 +86,8 @@ bool adcInit(void)
   hadc1.Init.Overrun = ADC_OVR_DATA_PRESERVED;
   hadc1.Init.LeftBitShift = ADC_LEFTBITSHIFT_NONE;
   hadc1.Init.OversamplingMode = DISABLE;
+
+  HAL_ADC_DeInit(&hadc1);
   if (HAL_ADC_Init(&hadc1) != HAL_OK)
   {
     Error_Handler();
