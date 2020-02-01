@@ -150,6 +150,7 @@ bool adcInit(void)
 
 
 
+  delay(50);
 
 #ifdef _USE_HW_CMDIF
   cmdifAdd("adc", adcCmdif);
