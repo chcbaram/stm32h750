@@ -23,7 +23,7 @@ __attribute__((section(".tag"))) flash_tag_t fw_tag =
      // fw info
      //
      0xAAAA5555,        // magic_number
-     "V200129R1",       // version_str
+     "V200201R1",       // version_str
      "STM32H750_B/D",   // board_str
      "Firmware",        // name
      __DATE__,
@@ -37,10 +37,7 @@ __attribute__((section(".tag"))) flash_tag_t fw_tag =
     };
 
 
-
-
 void testCmdif(void);
-
 
 
 
@@ -71,7 +68,6 @@ void apMain(void)
       //logPrintf("X : %d\n", (int)joypadGetX());
       //logPrintf("Y : %d\n", (int)joypadGetY());
     }
-
 
     if (lcdDrawAvailable() > 0)
     {
@@ -123,3 +119,5 @@ void testCmdif(void)
     cmdifPrintf( "test info \n");
   }
 }
+
+

@@ -265,7 +265,7 @@ uint8_t bootCmdJumpToFw(void)
   cmd_t *p_cmd = &cmd_boot;
 
 
-  ret = cmdSendCmdRxResp(p_cmd, BOOT_CMD_JUMP_TO_FW, NULL, 0, 1000);
+  ret = cmdSendCmdRxResp(p_cmd, BOOT_CMD_JUMP_TO_FW, NULL, 0, 3000);
   if (ret == false)
   {
     errcode = p_cmd->rx_packet.error;

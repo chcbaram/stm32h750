@@ -48,6 +48,7 @@ uint8_t BSP_QSPI_DeInit     (void);
 uint8_t BSP_QSPI_Read       (uint8_t* pData, uint32_t ReadAddr, uint32_t Size);
 uint8_t BSP_QSPI_Write      (uint8_t* pData, uint32_t WriteAddr, uint32_t Size);
 uint8_t BSP_QSPI_Erase_Block(uint32_t BlockAddress);
+uint8_t BSP_QSPI_Erase_Sector(uint32_t BlockAddress);
 uint8_t BSP_QSPI_Erase_Chip (void);
 uint8_t BSP_QSPI_GetStatus  (void);
 uint8_t BSP_QSPI_GetInfo    (QSPI_Info* pInfo);
@@ -181,6 +182,22 @@ bool qspiEraseBlock(uint32_t block_addr)
   }
 }
 
+bool qspiEraseSector(uint32_t block_addr)
+{
+  uint8_t ret;
+
+  ret = BSP_QSPI_Erase_Sector(block_addr);
+
+  if (ret == QSPI_OK)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+
 bool qspiErase(uint32_t addr, uint32_t length)
 {
   bool ret;
@@ -191,7 +208,7 @@ bool qspiErase(uint32_t addr, uint32_t length)
   uint32_t i;
 
 
-
+#if 0
   flash_length = W25Q128FV_FLASH_SIZE;
   block_size   = W25Q128FV_SUBSECTOR_SIZE;
 
@@ -218,7 +235,34 @@ bool qspiErase(uint32_t addr, uint32_t length)
       break;
     }
   }
+#else
+  flash_length = W25Q128FV_FLASH_SIZE;
+  block_size   = W25Q128FV_SECTOR_SIZE;
 
+
+  if ((addr > flash_length) || ((addr+length) > flash_length))
+  {
+    return false;
+  }
+  if (length == 0)
+  {
+    return false;
+  }
+
+
+  block_begin = addr / block_size;
+  block_end   = (addr + length - 1) / block_size;
+
+
+  for (i=block_begin; i<=block_end; i++)
+  {
+    ret = qspiEraseSector(block_size*i);
+    if (ret == false)
+    {
+      break;
+    }
+  }
+#endif
   return ret;
 }
 
@@ -561,6 +605,44 @@ uint8_t BSP_QSPI_Erase_Block(uint32_t BlockAddress)
   s_command.AddressMode       = QSPI_ADDRESS_1_LINE;
   s_command.AddressSize       = QSPI_ADDRESS_24_BITS;
   s_command.Address           = BlockAddress;
+  s_command.AlternateByteMode = QSPI_ALTERNATE_BYTES_NONE;
+  s_command.DataMode          = QSPI_DATA_NONE;
+  s_command.DummyCycles       = 0;
+  s_command.DdrMode           = QSPI_DDR_MODE_DISABLE;
+  s_command.DdrHoldHalfCycle  = QSPI_DDR_HHC_ANALOG_DELAY;
+  s_command.SIOOMode          = QSPI_SIOO_INST_EVERY_CMD;
+
+  /* Enable write operations */
+  if (QSPI_WriteEnable(&hqspi) != QSPI_OK)
+  {
+    return QSPI_ERROR;
+  }
+
+  /* Send the command */
+  if (HAL_QSPI_Command(&hqspi, &s_command, HAL_QPSI_TIMEOUT_DEFAULT_VALUE) != HAL_OK)
+  {
+    return QSPI_ERROR;
+  }
+
+  /* Configure automatic polling mode to wait for end of erase */
+  if (QSPI_AutoPollingMemReady(&hqspi, W25Q128FV_SUBSECTOR_ERASE_MAX_TIME) != QSPI_OK)
+  {
+    return QSPI_ERROR;
+  }
+
+  return QSPI_OK;
+}
+
+uint8_t BSP_QSPI_Erase_Sector(uint32_t SectorAddress)
+{
+  QSPI_CommandTypeDef s_command;
+
+  /* Initialize the erase command */
+  s_command.InstructionMode   = QSPI_INSTRUCTION_1_LINE;
+  s_command.Instruction       = SECTOR_ERASE_CMD;
+  s_command.AddressMode       = QSPI_ADDRESS_1_LINE;
+  s_command.AddressSize       = QSPI_ADDRESS_24_BITS;
+  s_command.Address           = SectorAddress;
   s_command.AlternateByteMode = QSPI_ALTERNATE_BYTES_NONE;
   s_command.DataMode          = QSPI_DATA_NONE;
   s_command.DummyCycles       = 0;

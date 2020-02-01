@@ -19,6 +19,7 @@ extern "C" {
 #include "reset.h"
 #include "rtc.h"
 #include "delay.h"
+#include "micros.h"
 #include "millis.h"
 #include "led.h"
 #include "uart.h"

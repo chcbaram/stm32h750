@@ -21,7 +21,8 @@ void hwInit(void)
   bspInit();
 
   delayInit();
-  millis();
+  microsInit();
+  millisInit();
 
   resetInit();
   cmdifInit();

@@ -17,18 +17,22 @@
 #define _HW_DEF_RTOS_MEM_SIZE(x)              ((x)/4)
 
 #define _HW_DEF_RTOS_THREAD_PRI_MAIN          osPriorityNormal
+#define _HW_DEF_RTOS_THREAD_PRI_EMUL          osPriorityNormal
 
-#define _HW_DEF_RTOS_THREAD_MEM_MAIN          _HW_DEF_RTOS_MEM_SIZE(6*1024)
 
+#define _HW_DEF_RTOS_THREAD_MEM_MAIN          _HW_DEF_RTOS_MEM_SIZE( 6*1024)
+#define _HW_DEF_RTOS_THREAD_MEM_EMUL          _HW_DEF_RTOS_MEM_SIZE(24*1024)
 
 
 #define _USE_HW_RTOS
 #define _USE_HW_DELAY
 #define _USE_HW_MILLIS
+#define _USE_HW_MICROS
 #define _USE_HW_QSPI
 #define _USE_HW_FLASH
 #define _USE_HW_SD
 #define _USE_HW_FATFS
+#define _USE_HW_FILES
 
 
 #define _USE_HW_RTC

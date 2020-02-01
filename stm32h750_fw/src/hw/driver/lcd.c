@@ -161,16 +161,15 @@ void lcdUpdateDraw(void)
 
 void lcdSwapFrameBuffer(void)
 {
-  frame_index ^= 1;
-
-  ili9225SetFrameBuffer(frame_buffer[frame_index]);
-
   if (is_double_buffer == true)
   {
+    frame_index ^= 1;
+    ili9225SetFrameBuffer(frame_buffer[frame_index]);
     p_draw_frame_buf = frame_buffer[frame_index ^ 1];
   }
   else
   {
+    ili9225SetFrameBuffer(frame_buffer[frame_index]);
     p_draw_frame_buf = frame_buffer[frame_index];
   }
 }
