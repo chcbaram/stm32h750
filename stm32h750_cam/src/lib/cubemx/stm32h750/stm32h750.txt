@@ -1,0 +1,220 @@
+Configuration	stm32h750
+STM32CubeMX 	5.5.0
+Date	02/01/2020
+MCU	STM32H750VBTx
+
+
+
+PERIPHERALS	MODES	FUNCTIONS	PINS
+ADC1	IN7 Single-ended	ADC1_INP7	PA7
+ADC1	IN8 Single-ended	ADC1_INP8	PC5
+DCMI	Slave 8 bits External Synchro	DCMI_D0	PC6
+DCMI	Slave 8 bits External Synchro	DCMI_D1	PC7
+DCMI	Slave 8 bits External Synchro	DCMI_D2	PE0
+DCMI	Slave 8 bits External Synchro	DCMI_D3	PE1
+DCMI	Slave 8 bits External Synchro	DCMI_D4	PE4
+DCMI	Slave 8 bits External Synchro	DCMI_D5	PD3
+DCMI	Slave 8 bits External Synchro	DCMI_D6	PE5
+DCMI	Slave 8 bits External Synchro	DCMI_D7	PE6
+DCMI	Slave 8 bits External Synchro	DCMI_HSYNC	PA4
+DCMI	Slave 8 bits External Synchro	DCMI_PIXCLK	PA6
+DCMI	Slave 8 bits External Synchro	DCMI_VSYNC	PB7
+I2C2	I2C	I2C2_SCL	PB10
+I2C2	I2C	I2C2_SDA	PB11
+QUADSPI	Bank1 with Quad SPI Lines	QUADSPI_BK1_IO0	PD11
+QUADSPI	Bank1 with Quad SPI Lines	QUADSPI_BK1_IO1	PD12
+QUADSPI	Bank1 with Quad SPI Lines	QUADSPI_BK1_IO2	PE2
+QUADSPI	Bank1 with Quad SPI Lines	QUADSPI_BK1_IO3	PA1
+QUADSPI	Bank1 with Quad SPI Lines	QUADSPI_BK1_NCS	PB6
+QUADSPI	Bank1 with Quad SPI Lines	QUADSPI_CLK	PB2
+RCC	Crystal/Ceramic Resonator	RCC_OSC_IN	PH0-OSC_IN (PH0)
+RCC	Crystal/Ceramic Resonator	RCC_OSC_OUT	PH1-OSC_OUT (PH1)
+RTC	Activate Clock Source	RTC_VS_RTC_Activate	VP_RTC_VS_RTC_Activate
+RTC	Activate Calendar	RTC_VS_RTC_Calendar	VP_RTC_VS_RTC_Calendar
+SDMMC1	SD 4 bits Wide bus	SDMMC1_CK	PC12
+SDMMC1	SD 4 bits Wide bus	SDMMC1_CMD	PD2
+SDMMC1	SD 4 bits Wide bus	SDMMC1_D0	PC8
+SDMMC1	SD 4 bits Wide bus	SDMMC1_D1	PC9
+SDMMC1	SD 4 bits Wide bus	SDMMC1_D2	PC10
+SDMMC1	SD 4 bits Wide bus	SDMMC1_D3	PC11
+SPI1	Transmit Only Master	SPI1_MOSI	PD7
+SPI1	Transmit Only Master	SPI1_SCK	PA5
+SYS	SysTick	SYS_VS_Systick	VP_SYS_VS_Systick
+TIM2	Internal Clock	TIM2_VS_ClockSourceINT	VP_TIM2_VS_ClockSourceINT
+TIM17	Enable_Timer	TIM17_VS_ClockSourceINT	VP_TIM17_VS_ClockSourceINT
+TIM17	PWM Generation CH1	TIM17_CH1	PB9
+USART1	Asynchronous	USART1_RX	PB15
+USART1	Asynchronous	USART1_TX	PB14
+USB_OTG_FS	Device_Only	USB_OTG_FS_DM	PA11
+USB_OTG_FS	Device_Only	USB_OTG_FS_DP	PA12
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+1	PE2	QUADSPI_BK1_IO2	
+3	PE4	DCMI_D4	
+4	PE5	DCMI_D6	
+5	PE6	DCMI_D7	
+7	PC13	GPIO_Input	SDCARD_CD
+9	PC15-OSC32_OUT (OSC32_OUT)	GPIO_Output	
+12	PH0-OSC_IN (PH0)	RCC_OSC_IN	
+13	PH1-OSC_OUT (PH1)	RCC_OSC_OUT	
+15	PC0	GPIO_Output	SPI1_CS
+16	PC1	GPIO_Output	SPI1_RS
+17	PC2_C	GPIO_Output	LCD_RESET
+23	PA1	QUADSPI_BK1_IO3	
+28	PA4	DCMI_HSYNC	
+29	PA5	SPI1_SCK	
+30	PA6	DCMI_PIXCLK	
+31	PA7	ADC1_INP7	JOYPAD_X
+33	PC5	ADC1_INP8	JOYPAD_Y
+36	PB2	QUADSPI_CLK	
+46	PB10	I2C2_SCL	
+47	PB11	I2C2_SDA	
+53	PB14	USART1_TX	
+54	PB15	USART1_RX	
+58	PD11	QUADSPI_BK1_IO0	
+59	PD12	QUADSPI_BK1_IO1	
+63	PC6	DCMI_D0	
+64	PC7	DCMI_D1	
+65	PC8	SDMMC1_D0	
+66	PC9	SDMMC1_D1	
+68	PA9	GPIO_Input	BTN_HOME
+70	PA11	USB_OTG_FS_DM	
+71	PA12	USB_OTG_FS_DP	
+78	PC10	SDMMC1_D2	
+79	PC11	SDMMC1_D3	
+80	PC12	SDMMC1_CK	
+81	PD0	GPIO_Input	BTN_MENU
+83	PD2	SDMMC1_CMD	
+84	PD3	DCMI_D5	
+85	PD4	GPIO_Input	BTN_SELECT
+87	PD6	GPIO_Input	BTN_START
+88	PD7	SPI1_MOSI	
+91	PB5	GPIO_Input	BTN_B
+92	PB6	QUADSPI_BK1_NCS	
+93	PB7	DCMI_VSYNC	
+95	PB8	GPIO_Input	BTN_A
+96	PB9	TIM17_CH1	
+97	PE0	DCMI_D2	
+98	PE1	DCMI_D3	
+PERIPHERALS	MODES	FUNCTIONS	PINS
+ADC1	IN7 Single-ended	ADC1_INP7	PA7
+ADC1	IN8 Single-ended	ADC1_INP8	PC5
+DCMI	Slave 8 bits External Synchro	DCMI_D0	PC6
+DCMI	Slave 8 bits External Synchro	DCMI_D1	PC7
+DCMI	Slave 8 bits External Synchro	DCMI_D2	PE0
+DCMI	Slave 8 bits External Synchro	DCMI_D3	PE1
+DCMI	Slave 8 bits External Synchro	DCMI_D4	PE4
+DCMI	Slave 8 bits External Synchro	DCMI_D5	PD3
+DCMI	Slave 8 bits External Synchro	DCMI_D6	PE5
+DCMI	Slave 8 bits External Synchro	DCMI_D7	PE6
+DCMI	Slave 8 bits External Synchro	DCMI_HSYNC	PA4
+DCMI	Slave 8 bits External Synchro	DCMI_PIXCLK	PA6
+DCMI	Slave 8 bits External Synchro	DCMI_VSYNC	PB7
+I2C2	I2C	I2C2_SCL	PB10
+I2C2	I2C	I2C2_SDA	PB11
+QUADSPI	Bank1 with Quad SPI Lines	QUADSPI_BK1_IO0	PD11
+QUADSPI	Bank1 with Quad SPI Lines	QUADSPI_BK1_IO1	PD12
+QUADSPI	Bank1 with Quad SPI Lines	QUADSPI_BK1_IO2	PE2
+QUADSPI	Bank1 with Quad SPI Lines	QUADSPI_BK1_IO3	PA1
+QUADSPI	Bank1 with Quad SPI Lines	QUADSPI_BK1_NCS	PB6
+QUADSPI	Bank1 with Quad SPI Lines	QUADSPI_CLK	PB2
+RCC	Crystal/Ceramic Resonator	RCC_OSC_IN	PH0-OSC_IN (PH0)
+RCC	Crystal/Ceramic Resonator	RCC_OSC_OUT	PH1-OSC_OUT (PH1)
+RTC	Activate Clock Source	RTC_VS_RTC_Activate	VP_RTC_VS_RTC_Activate
+RTC	Activate Calendar	RTC_VS_RTC_Calendar	VP_RTC_VS_RTC_Calendar
+SDMMC1	SD 4 bits Wide bus	SDMMC1_CK	PC12
+SDMMC1	SD 4 bits Wide bus	SDMMC1_CMD	PD2
+SDMMC1	SD 4 bits Wide bus	SDMMC1_D0	PC8
+SDMMC1	SD 4 bits Wide bus	SDMMC1_D1	PC9
+SDMMC1	SD 4 bits Wide bus	SDMMC1_D2	PC10
+SDMMC1	SD 4 bits Wide bus	SDMMC1_D3	PC11
+SPI1	Transmit Only Master	SPI1_MOSI	PD7
+SPI1	Transmit Only Master	SPI1_SCK	PA5
+SYS	SysTick	SYS_VS_Systick	VP_SYS_VS_Systick
+TIM2	Internal Clock	TIM2_VS_ClockSourceINT	VP_TIM2_VS_ClockSourceINT
+TIM17	Enable_Timer	TIM17_VS_ClockSourceINT	VP_TIM17_VS_ClockSourceINT
+TIM17	PWM Generation CH1	TIM17_CH1	PB9
+USART1	Asynchronous	USART1_RX	PB15
+USART1	Asynchronous	USART1_TX	PB14
+USB_OTG_FS	Device_Only	USB_OTG_FS_DM	PA11
+USB_OTG_FS	Device_Only	USB_OTG_FS_DP	PA12
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+1	PE2	QUADSPI_BK1_IO2	
+3	PE4	DCMI_D4	
+4	PE5	DCMI_D6	
+5	PE6	DCMI_D7	
+7	PC13	GPIO_Input	SDCARD_CD
+9	PC15-OSC32_OUT (OSC32_OUT)	GPIO_Output	
+12	PH0-OSC_IN (PH0)	RCC_OSC_IN	
+13	PH1-OSC_OUT (PH1)	RCC_OSC_OUT	
+15	PC0	GPIO_Output	SPI1_CS
+16	PC1	GPIO_Output	SPI1_RS
+17	PC2_C	GPIO_Output	LCD_RESET
+23	PA1	QUADSPI_BK1_IO3	
+28	PA4	DCMI_HSYNC	
+29	PA5	SPI1_SCK	
+30	PA6	DCMI_PIXCLK	
+31	PA7	ADC1_INP7	JOYPAD_X
+33	PC5	ADC1_INP8	JOYPAD_Y
+36	PB2	QUADSPI_CLK	
+46	PB10	I2C2_SCL	
+47	PB11	I2C2_SDA	
+53	PB14	USART1_TX	
+54	PB15	USART1_RX	
+58	PD11	QUADSPI_BK1_IO0	
+59	PD12	QUADSPI_BK1_IO1	
+63	PC6	DCMI_D0	
+64	PC7	DCMI_D1	
+65	PC8	SDMMC1_D0	
+66	PC9	SDMMC1_D1	
+68	PA9	GPIO_Input	BTN_HOME
+70	PA11	USB_OTG_FS_DM	
+71	PA12	USB_OTG_FS_DP	
+78	PC10	SDMMC1_D2	
+79	PC11	SDMMC1_D3	
+80	PC12	SDMMC1_CK	
+81	PD0	GPIO_Input	BTN_MENU
+83	PD2	SDMMC1_CMD	
+84	PD3	DCMI_D5	
+85	PD4	GPIO_Input	BTN_SELECT
+87	PD6	GPIO_Input	BTN_START
+88	PD7	SPI1_MOSI	
+91	PB5	GPIO_Input	BTN_B
+92	PB6	QUADSPI_BK1_NCS	
+93	PB7	DCMI_VSYNC	
+95	PB8	GPIO_Input	BTN_A
+96	PB9	TIM17_CH1	
+97	PE0	DCMI_D2	
+98	PE1	DCMI_D3	
+
+
+
+SOFTWARE PROJECT
+
+Project Settings : 
+Project Name : stm32h750
+Project Folder : D:\git\stm32h750\stm32h750_fw\src\lib\cubemx\stm32h750
+Toolchain / IDE : TrueSTUDIO
+Firmware Package Name and Version : STM32Cube FW_H7 V1.6.0
+
+
+Code Generation Settings : 
+STM32Cube MCU packages and embedded software packs : Copy only the necessary library files
+Generate peripheral initialization as a pair of '.c/.h' files per peripheral : Yes
+Backup previously generated files when re-generating : No
+Delete previously generated files when not re-generated : Yes
+Set all free pins as analog (to optimize the power consumption) : No
+
+
+Toolchains Settings : 
+Compiler Optimizations : 
+
+
+
+
+
