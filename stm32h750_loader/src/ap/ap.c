@@ -67,11 +67,11 @@ void apMain(int argc, char *argv[])
 
   if (argc != 7)
   {
-    printf("stm32h750_loader.exe com1 115200 type[fw:image] 0x9000000 file_name run[0:1]\n");
+    printf("stm32h7_loader.exe com1 115200 type[fw:image] 0x9000000 file_name run[0:1]\n");
     return;
   }
 
-  printf("\stm32h750_loader... V200127R1\n\n");
+  printf("stm32h7_loader... V200213R1\n\n");
 
   port_name = (char *)argv[ 1 ];
   baud      = strtol( argv[ 2 ], NULL, 10 );
@@ -322,15 +322,17 @@ void apMain(int argc, char *argv[])
       printf("Download \t: OK\n");
     }
 
-
-    errcode = bootCmdJumpToFw();
-    if (errcode == OK)
+    if (file_run > 0)
     {
-        printf("jump to fw \t: OK\n");
-    }
-    else
-    {
-      printf("jump to fw fail : %d\n", errcode);
+      errcode = bootCmdJumpToFw();
+      if (errcode == OK)
+      {
+          printf("jump to fw \t: OK\n");
+      }
+      else
+      {
+        printf("jump to fw fail : %d\n", errcode);
+      }
     }
 
     break;
