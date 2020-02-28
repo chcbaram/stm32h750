@@ -67,11 +67,11 @@ void apMain(int argc, char *argv[])
 
   if (argc != 7)
   {
-    printf("stm32h7_loader.exe com1 115200 type[fw:image] 0x9000000 file_name run[0:1]\n");
+    printf("fw_loader.exe com1 115200 type[fw:image] 0x9000000 file_name run[0:1]\n");
     return;
   }
 
-  printf("stm32h7_loader... V200213R1\n\n");
+  printf("fw_loader... V200228R1\n\n");
 
   port_name = (char *)argv[ 1 ];
   baud      = strtol( argv[ 2 ], NULL, 10 );
@@ -144,17 +144,16 @@ void apMain(int argc, char *argv[])
   printf("     baud \t: %d\n", baud);
 
   ret = bootInit(_DEF_UART2, port_name, baud);
-  if (ret == true)
+  if (ret != true)
   {
-    printf("bootInit \t: OK\n");
-  }
-  else
-  {
-    printf("bootInit  Fail\n");
-    return;
+    if (bootInit(_DEF_UART2, port_name, baud) != true)
+    {
+      printf("bootInit  Fail\n");
+      return;
+    }
   }
 
-
+  printf("bootInit \t: OK\n");
 
 
   flash_begin = start_addr;

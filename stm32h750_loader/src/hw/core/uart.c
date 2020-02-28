@@ -28,7 +28,7 @@ typedef struct
 } uart_t;
 
 
-
+bool log_err = true;
 uart_t   uart_tbl[UART_MAX_CH];
 
 
@@ -48,6 +48,16 @@ void uartInit(void)
     uart_tbl[i].is_consol = false;
     uart_tbl[i].is_port_name = false;
   }
+}
+
+void uartLogOn(void)
+{
+  log_err = true;
+}
+
+void uartLogOff(void)
+{
+  log_err = false;
 }
 
 bool uartOpen(uint8_t channel, uint32_t baud)
@@ -106,7 +116,8 @@ uint32_t uartOpenPC(uint8_t channel, char *port_name, uint32_t baud)
   p_uart->serial_handle = CreateFileA(p_uart->port_name, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
   if (p_uart->serial_handle == INVALID_HANDLE_VALUE)
   {
-    printf("Error opening serial port!\n");
+    if (log_err)
+      printf("Error opening serial port!\n");
     return 2;
   }
 
@@ -115,6 +126,8 @@ uint32_t uartOpenPC(uint8_t channel, char *port_name, uint32_t baud)
     dcb.DCBlength = sizeof(DCB);
     if (GetCommState(p_uart->serial_handle, &dcb) == FALSE)
     {
+      if (log_err)
+        printf("Error GetCommState\n");
       err_code = 1;
       break;
     }
@@ -144,7 +157,8 @@ uint32_t uartOpenPC(uint8_t channel, char *port_name, uint32_t baud)
       DWORD dwError = GetLastError();
       err_code = 2;
 
-      printf("SetCommState err: %d\n", (int)dwError);
+      if (log_err)
+        printf("SetCommState err: %d\n", (int)dwError);
       break;
     }
 

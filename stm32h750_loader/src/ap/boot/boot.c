@@ -39,11 +39,12 @@ bool bootInit(uint8_t channel, char *port_name, uint32_t baud)
 
   uartSetPortName(channel, port_name);
 
-
+#if 0
   uartOpen(channel, baud);
   uartPutch(channel, 0x55);
   uartPutch(channel, 0x55);
   delay(100);
+
 
   uartPrintf(channel, " \r\n boot 0x5555AAAA \r\n");
   delay(100);
@@ -55,18 +56,51 @@ bool bootInit(uint8_t channel, char *port_name, uint32_t baud)
   delay(100);
   uartClose(channel);
 
-
-  uartOpen(channel, 1200);
-  uartPrintf(channel, "BOOT 5555AAAA");
-  uartClose(channel);
-  delay(2500);
-
   uartOpen(channel, baud);
   uartPutch(channel, 0x55);
   uartPutch(channel, 0x55);
   uartClose(channel);
   delay(100);
 
+  uartOpen(channel, 1200);
+  uartPrintf(channel, "BOOT 5555AAAA");
+  uartClose(channel);
+  delay(3500);
+#else
+  printf("     wait\t: ");
+
+  if (uartOpen(channel, 1200) == true)
+  {
+    uartPrintf(channel, "BOOT 5555AAAA");
+    uartClose(channel);
+    delay(1000);
+
+    uartLogOff();
+    bool ret = false;
+    for (int i=0; i<6; i++)
+    {
+      ret = uartOpen(channel, baud);
+      if (ret == true)
+      {
+        uartClose(channel);
+        break;
+      }
+      delay(1000);
+      printf("#");
+    }
+    printf("\n");
+    uartLogOn();
+    if (ret != true)
+    {
+      return false;
+    }
+  }
+  else
+  {
+    printf("uartOpen : Fail\n");
+    return false;
+  }
+#endif
 
   if (cmdBegin(&cmd_boot, channel, baud) == false)
   {

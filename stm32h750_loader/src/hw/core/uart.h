@@ -18,6 +18,8 @@
 void     uartInit(void);
 bool     uartOpen(uint8_t channel, uint32_t baud);
 bool     uartClose(uint8_t channel);
+void     uartLogOn(void);
+void     uartLogOff(void);
 void     uartSetPortName(uint8_t channel, char *port_name);
 uint32_t uartAvailable(uint8_t channel);
 void     uartFlush(uint8_t channel);
@@ -26,6 +28,5 @@ uint8_t  uartGetch(uint8_t channel);
 int32_t  uartWrite(uint8_t channel, uint8_t *p_data, uint32_t length);
 uint8_t  uartRead(uint8_t channel);
 int32_t  uartPrintf(uint8_t channel, const char *fmt, ...);
-
 
 #endif /* SRC_HW_CORE_UART_H_ */
