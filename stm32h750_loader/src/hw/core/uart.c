@@ -200,6 +200,8 @@ uint32_t uartOpenPC(uint8_t channel, char *port_name, uint32_t baud)
       err_code = 8;
       break;
     }
+    EscapeCommFunction(p_uart->serial_handle, SETRTS);
+    EscapeCommFunction(p_uart->serial_handle, SETDTR);
     break;
   }
 
